@@ -37,7 +37,7 @@
 
     const props = defineProps({
         view: {
-            type: String
+            /* Prop for what view we are on */ type: String
         }
     })
 </script>
@@ -48,7 +48,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        height: 10vh;
+        height: 80px;
         position: fixed;
         top: 0;
         width: 100%;
@@ -71,7 +71,7 @@
         display: flex;
         gap: 2.4rem;
         list-style: none;
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
 
     .nav-link {
@@ -91,7 +91,7 @@
     .view-text {
         color: white;
         font-weight: 500;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
 
     .hamburger {
