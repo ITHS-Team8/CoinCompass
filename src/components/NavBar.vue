@@ -7,9 +7,15 @@
         </div>
         <div class="view-text">{{ props.view }}</div>
         <ul class="nav-links" :class="{ active: isMenuOpen }">
-            <router-link to="/expenses" class="nav-link">Expenses</router-link>
-            <router-link to="/account" class="nav-link">Account</router-link>
-            <router-link to="/about" class="nav-link">About</router-link>
+            <router-link
+                v-for="(link, index) in links"
+                :key="index"
+                @click="currentPage = link.text"
+                :class="{ current: currentPage === link.text }"
+                class="nav-link"
+                :to="link.url"
+                >{{ link.text }}</router-link
+            >
         </ul>
         <div
             class="hamburger"
@@ -31,13 +37,22 @@
 
     const isMenuOpen = ref(false)
 
-    const toggleMenu = () => {
+    const links = ref([
+        { text: 'Expenses', url: '/expenses' },
+        { text: 'Account', url: '/account' },
+        { text: 'About', url: '/about' }
+    ])
+
+    const currentPage = ref('')
+
+    function toggleMenu() {
         isMenuOpen.value = !isMenuOpen.value
     }
 
+    /* Prop for what view we are on */
     const props = defineProps({
         view: {
-            /* Prop for what view we are on */ type: String
+            type: String
         }
     })
 </script>
@@ -86,6 +101,13 @@
 
     .nav-link:hover {
         background-color: #257c29;
+    }
+
+    /* When link is active */
+    .current {
+        text-decoration: underline;
+        text-underline-offset: 9px;
+        font-weight: 500;
     }
 
     .view-text {
