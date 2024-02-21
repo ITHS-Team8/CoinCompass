@@ -24,7 +24,6 @@ defineProps({
         align-items: center;
         height: 100%;
         border-radius: 12px;
-
         background-color: #D9D9D9;
     }
     .main-container h1 {
@@ -37,6 +36,7 @@ defineProps({
         display: flex;
         justify-content: center;
         align-items: center;
+        width: 100%;
         background-color: #C6C4C4;
         border-radius: 12px 12px 0 0;
     }
