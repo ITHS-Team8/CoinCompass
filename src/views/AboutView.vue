@@ -5,7 +5,6 @@
 <template>
     <main>
         <NavBar view="About" />
-
         <h1>About View</h1>
     </main>
 </template>
