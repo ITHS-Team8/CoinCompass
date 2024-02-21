@@ -1,6 +1,8 @@
 <script setup lang="ts">
-
-
+defineProps({
+    cardTitle: String,
+    cardInfo: String,
+})
 </script>
 
 <template>
