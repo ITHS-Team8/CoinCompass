@@ -10,8 +10,7 @@
             <router-link
                 v-for="(link, index) in links"
                 :key="index"
-                @click="currentPage = link.text"
-                :class="{ current: currentPage === link.text }"
+                active-class="current"
                 class="nav-link"
                 :to="link.url"
                 >{{ link.text }}</router-link
@@ -42,8 +41,6 @@
         { text: 'Account', url: '/account' },
         { text: 'About', url: '/about' }
     ])
-
-    const currentPage = ref('')
 
     function toggleMenu() {
         isMenuOpen.value = !isMenuOpen.value
