@@ -6,11 +6,20 @@
             </router-link>
         </div>
         <div class="view-text">{{ props.view }}</div>
-        <ul class="nav-links">
+        <ul class="nav-links" :class="{ active: isMenuOpen }">
             <router-link to="/expenses" class="nav-link">Expenses</router-link>
             <router-link to="/account" class="nav-link">Account</router-link>
             <router-link to="/about" class="nav-link">About</router-link>
         </ul>
+        <div
+            class="hamburger"
+            :class="{ active: isMenuOpen }"
+            @click="toggleMenu"
+        >
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
     </nav>
 
     <div style="height: 1000px"></div>
@@ -18,6 +27,13 @@
 
 <script setup lang="ts">
     import { RouterLink } from 'vue-router'
+    import { ref } from 'vue'
+
+    const isMenuOpen = ref(false)
+
+    const toggleMenu = () => {
+        isMenuOpen.value = !isMenuOpen.value
+    }
 
     const props = defineProps({
         view: {
@@ -76,5 +92,63 @@
         color: white;
         font-weight: 500;
         font-size: 1.5rem;
+    }
+
+    .hamburger {
+        display: none;
+        cursor: pointer;
+    }
+
+    .bar {
+        display: block;
+        width: 32px;
+        height: 3px;
+        margin: 5px auto;
+        transition: all 0.4s ease-in-out;
+        background-color: white;
+    }
+
+    @media (max-width: 900px) {
+        .hamburger {
+            display: block;
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .nav-links {
+            position: fixed;
+            left: -100%;
+            top: 70px;
+            gap: 0;
+            flex-direction: column;
+            background-color: var(--primary-color);
+            width: 100%;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .nav-links.active {
+            left: 0px;
+        }
+
+        .nav-link {
+            background-color: var(--primary-color);
+        }
+        .nav-link:hover {
+            background-color: #325233;
+        }
+
+        .view-text {
+            display: none;
+        }
     }
 </style>
