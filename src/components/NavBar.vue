@@ -1,5 +1,5 @@
 <template>
-    <nav class="desktop-nav">
+    <nav>
         <div class="logo">
             <router-link to="/">
                 <img src="../assets/CoinCompassLogo.png" alt="logo" />
@@ -22,7 +22,7 @@
         </div>
     </nav>
 
-    <div style="height: 1000px"></div>
+    <div class="overlay" v-if="isMenuOpen" @click="toggleMenu"></div>
 </template>
 
 <script setup lang="ts">
@@ -49,10 +49,10 @@
         justify-content: space-between;
         align-items: center;
         height: 10vh;
-        width: 100%;
         position: fixed;
         top: 0;
-        z-index: 1;
+        width: 100%;
+        z-index: 2;
         padding-left: 2rem;
         padding-right: 4rem;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
@@ -109,6 +109,11 @@
     }
 
     @media (max-width: 900px) {
+        nav {
+            padding-right: 2rem;
+            padding-left: 10px;
+            box-shadow: none;
+        }
         .hamburger {
             display: block;
         }
@@ -149,6 +154,16 @@
 
         .view-text {
             display: none;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1;
         }
     }
 </style>
