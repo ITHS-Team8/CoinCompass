@@ -32,7 +32,15 @@
 
 <script setup lang="ts">
     import { RouterLink } from 'vue-router'
+    import { defineProps } from 'vue'
     import { ref } from 'vue'
+
+    /* Prop for what view we are on */
+    const props = defineProps({
+        view: {
+            type: String
+        }
+    })
 
     const isMenuOpen = ref(false)
 
@@ -45,13 +53,6 @@
     function toggleMenu() {
         isMenuOpen.value = !isMenuOpen.value
     }
-
-    /* Prop for what view we are on */
-    const props = defineProps({
-        view: {
-            type: String
-        }
-    })
 </script>
 
 <style scoped>
@@ -93,7 +94,7 @@
         padding: 0.8rem;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         border-radius: 6px;
-        transition: 0.3s;
+        transition: background-color 0.3s ease;
     }
 
     .nav-link:hover {
@@ -105,6 +106,7 @@
         text-decoration: underline;
         text-underline-offset: 9px;
         font-weight: 500;
+        background-color: #257c29;
     }
 
     .view-text {
