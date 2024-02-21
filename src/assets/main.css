@@ -3,4 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   overflow-x: hidden;
+
+  --primary-color: #3E6640;
+  --secondary-color: #298A2D; 
 }
