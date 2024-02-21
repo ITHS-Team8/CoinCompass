@@ -1,9 +1,15 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  overflow-x: hidden;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-  --primary-color: #3E6640;
-  --secondary-color: #298A2D; 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+
+    --primary-color: #3e6640;
+    --secondary-color: #298a2d;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
 }
