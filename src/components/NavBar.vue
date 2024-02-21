@@ -33,9 +33,9 @@
         justify-content: space-between;
         align-items: center;
         height: 10vh;
-        position: sticky;
-        top: 0;
         width: 100%;
+        position: fixed;
+        top: 0;
         z-index: 1;
         padding-left: 2rem;
         padding-right: 4rem;
@@ -53,7 +53,7 @@
 
     .nav-links {
         display: flex;
-        gap: 3rem;
+        gap: 2.4rem;
         list-style: none;
         font-size: 1.4rem;
     }
@@ -64,7 +64,12 @@
         background-color: var(--secondary-color);
         padding: 0.8rem;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-        border-radius: 8px;
+        border-radius: 6px;
+        transition: 0.3s;
+    }
+
+    .nav-link:hover {
+        background-color: #257c29;
     }
 
     .view-text {
