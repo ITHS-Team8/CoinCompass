@@ -31,7 +31,10 @@
                 farewell to worries, and embrace peace of mind. Simplify, take
                 control & transform your finances today!
             </p>
-            <router-link to="/expenses" class="btn1">Expenses</router-link>
+            <div class="btn-container">
+                <router-link to="/expenses" class="btn1">Sign up</router-link>
+                <router-link to="/expenses" class="btn2">Log in</router-link>
+            </div>
         </div>
     </section>
 
@@ -105,12 +108,22 @@
         margin-top: 0.4rem;
     }
 
+    .btn-container {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .btn-container .btn1 {
+        margin: 0rem;
+        margin-top: 0.4rem;
+    }
     .btn1 {
         display: block;
         width: 160px;
         height: 50px;
         text-align: center;
-        font-weight: 500;
+        font-weight: 600;
         padding: 0.8rem 2.5rem;
         margin: auto;
         margin-top: 0.4rem;
@@ -125,6 +138,27 @@
 
     .btn1:hover {
         background-color: #257c29;
+    }
+
+    .btn2 {
+        display: block;
+        width: 160px;
+        height: 50px;
+        text-align: center;
+        font-weight: 600;
+        padding: 0.8rem 2.5rem;
+        margin-top: 0.4rem;
+        border: 2px solid #298a2d;
+        border-radius: 30px;
+        background-color: #eaeaea;
+        color: black;
+        text-decoration: none;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn2:hover {
+        background-color: #dcdcdc;
     }
 
     hr {
