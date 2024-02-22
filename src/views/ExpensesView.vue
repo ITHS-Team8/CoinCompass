@@ -4,7 +4,7 @@
 
 <template>
     <main>
-        <NavBar view="Expenses" />
+        <NavBar />
         <h1>Expenses View</h1>
     </main>
 </template>

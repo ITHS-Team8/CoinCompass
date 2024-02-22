@@ -5,7 +5,8 @@
                 <img src="../assets/CoinCompassLogo.png" alt="logo" />
             </router-link>
         </div>
-        <div class="view-text">{{ props.view }}</div>
+        <!--         <div class="view-text">{{ props.view }}</div>
+ -->
         <ul class="nav-links" :class="{ active: isMenuOpen }">
             <router-link
                 v-for="(link, index) in links"
@@ -35,11 +36,12 @@
     import { ref } from 'vue'
 
     /* Prop for what view we are on */
-    const props = defineProps({
+    /* Just add prop on every view to get this functionality */
+    /* const props = defineProps({
         view: {
             type: String
         }
-    })
+    }) */
 
     const isMenuOpen = ref(false)
 
@@ -89,23 +91,43 @@
     .nav-link {
         text-decoration: none;
         color: white;
-        background-color: var(--secondary-color);
         padding: 0.8rem;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         border-radius: 6px;
-        transition: background-color 0.3s ease;
+        transition: all 0.3s ease;
     }
 
-    .nav-link:hover {
-        background-color: #257c29;
+    .nav-link {
+        position: relative;
     }
+
+    .nav-link::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: 4px;
+        left: 0;
+        background-color: white;
+        visibility: hidden;
+        transform: scaleX(0);
+        transition: all 0.3s ease-in-out 0s;
+    }
+
+    .nav-link:hover::before {
+        visibility: visible;
+        transform: scaleX(0.8);
+    }
+
+    /* .nav-link:hover {
+        text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+        text-decoration: underline;
+        text-underline-offset: 9px;
+    } */
 
     /* When link is active */
     .current {
-        text-decoration: underline;
-        text-underline-offset: 9px;
         font-weight: 500;
-        background-color: #257c29;
     }
 
     .view-text {

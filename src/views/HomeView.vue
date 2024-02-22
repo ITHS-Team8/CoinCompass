@@ -5,7 +5,7 @@
 
 <template>
     <main>
-        <NavBar view="Home" />
+        <NavBar />
         <HeroSection />
     </main>
 </template>
