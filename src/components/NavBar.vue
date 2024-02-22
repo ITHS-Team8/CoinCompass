@@ -32,7 +32,6 @@
 
 <script setup lang="ts">
     import { RouterLink } from 'vue-router'
-    import { defineProps } from 'vue'
     import { ref } from 'vue'
 
     /* Prop for what view we are on */
