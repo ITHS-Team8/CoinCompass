@@ -1,5 +1,5 @@
 <template>
-    <section id="hero-section">
+    <section id="hero-section1" class="hero-section">
         <div class="hero-text-container">
             <h1>Track your expenses</h1>
             <h3>Simplify your spending</h3>
@@ -15,13 +15,59 @@
             <img src="../assets/hero1.png" alt="hero img of globe" />
         </div>
     </section>
+
+    <hr />
+
+    <section id="hero-section2" class="hero-section">
+        <div class="hero-img-container">
+            <img src="../assets/hero2.png" alt="hero img of globe" />
+        </div>
+
+        <div class="hero-text-container">
+            <h1>Track your expenses</h1>
+            <h3>Simplify your spending</h3>
+            <p>
+                Manage expenses effortlessly! Track spending with ease, bid
+                farewell to worries, and embrace peace of mind. Simplify, take
+                control & transform your finances today!
+            </p>
+            <router-link to="/expenses" class="btn1">Expenses</router-link>
+        </div>
+    </section>
+
+    <hr />
+
+    <section id="hero-section" class="hero-section">
+        <div class="hero-text-container">
+            <h1>Track your expenses</h1>
+            <h3>Simplify your spending</h3>
+            <p>
+                Manage expenses effortlessly! Track spending with ease, bid
+                farewell to worries, and embrace peace of mind. Simplify, take
+                control & transform your finances today!
+            </p>
+            <router-link to="/expenses" class="btn1">Expenses</router-link>
+        </div>
+
+        <div class="hero-img-container">
+            <img src="../assets/hero3.png" alt="hero img of globe" />
+        </div>
+    </section>
+
+    <hr />
 </template>
 
 <script setup lang="ts"></script>
 
 <style scoped>
-    #hero-section {
+    #hero-section1 {
         margin-top: 10vh;
+    }
+
+    #hero-section2 {
+        background-color: #eaeaea;
+    }
+    .hero-section {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -29,7 +75,7 @@
     }
 
     .hero-img-container {
-        max-height: 400px;
+        max-height: 410px;
         max-width: 400px;
     }
 
@@ -68,6 +114,7 @@
         padding: 0.8rem 2.5rem;
         margin: auto;
         margin-top: 0.4rem;
+        margin-bottom: 1rem;
         border-radius: 30px;
         background-color: #298a2d;
         color: white;
@@ -80,11 +127,22 @@
         background-color: #257c29;
     }
 
+    hr {
+        display: none;
+        width: 80%;
+        margin: 3rem auto;
+        border-bottom: 5px solid #38b6ff;
+        border-radius: 1rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+    }
+
     @media (max-width: 900px) {
-        #hero-section {
+        #hero-section1 {
+            margin-top: 14vh;
+        }
+        .hero-section {
             flex-direction: column;
             gap: 0;
-            margin-top: 6rem;
         }
 
         .hero-text-container {
@@ -93,8 +151,11 @@
         }
 
         .hero-img-container {
-            max-width: 300px;
-            max-height: 300px;
+            max-width: 310px;
+        }
+
+        hr {
+            display: block;
         }
     }
 </style>
