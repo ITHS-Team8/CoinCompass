@@ -24,12 +24,12 @@
         </div>
 
         <div class="hero-text-container">
-            <h1>Track your expenses</h1>
-            <h3>Simplify your spending</h3>
+            <h1>Create your account</h1>
+            <h3>Personalize your experience</h3>
             <p>
-                Manage expenses effortlessly! Track spending with ease, bid
-                farewell to worries, and embrace peace of mind. Simplify, take
-                control & transform your finances today!
+                Tailor your experience by creating an account. Enjoy advanced
+                features, personalized settings, simple journey to control. Join
+                us now!
             </p>
             <div class="btn-container">
                 <router-link to="/expenses" class="btn1">Sign up</router-link>
@@ -100,6 +100,7 @@
     .hero-text-container h3 {
         font-size: 1.5rem;
         margin-bottom: 0.2rem;
+        font-weight: 500;
     }
 
     .hero-text-container p {
