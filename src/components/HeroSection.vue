@@ -32,22 +32,24 @@
                 us now!
             </p>
             <div class="btn-container">
-                <router-link to="/expenses" class="btn1">Sign up</router-link>
-                <router-link to="/expenses" class="btn2">Log in</router-link>
+                <router-link to="/" class="btn1">Sign up</router-link>
+                <!-- Har inga routes än -->
+                <router-link to="/" class="btn2">Log in</router-link>
+                <!-- Har inga routes än -->
             </div>
         </div>
     </section>
 
     <hr />
 
-    <section id="hero-section" class="hero-section">
+    <section id="hero-section3" class="hero-section">
         <div class="hero-text-container">
-            <h1>Track your expenses</h1>
-            <h3>Simplify your spending</h3>
+            <h1>Export your expenses</h1>
+            <h3>Effortlessly manage your data</h3>
             <p>
-                Manage expenses effortlessly! Track spending with ease, bid
-                farewell to worries, and embrace peace of mind. Simplify, take
-                control & transform your finances today!
+                Make your finances easier by exporting expenses. With one click,
+                securely download data in different formats. Keep records tidy
+                and study spending habits. Start today!
             </p>
             <router-link to="/expenses" class="btn1">Expenses</router-link>
         </div>
@@ -90,6 +92,7 @@
     .hero-text-container {
         width: 400px;
         text-align: center;
+        margin-top: 1rem;
     }
 
     .hero-text-container h1 {
@@ -191,6 +194,10 @@
 
         hr {
             display: block;
+        }
+
+        .btn-container {
+            margin-bottom: 2rem;
         }
     }
 </style>
