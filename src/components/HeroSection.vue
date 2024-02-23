@@ -12,7 +12,7 @@
         </div>
 
         <div class="hero-img-container">
-            <img src="../assets/hero1.png" alt="hero img of globe" />
+            <img src="../assets/hero1.png" alt="Account illustration" />
         </div>
     </section>
 
@@ -20,7 +20,7 @@
 
     <section id="hero-section2" class="hero-section">
         <div class="hero-img-container">
-            <img src="../assets/hero2.png" alt="hero img of globe" />
+            <img src="../assets/hero2.png" alt="different apps" />
         </div>
 
         <div class="hero-text-container">
