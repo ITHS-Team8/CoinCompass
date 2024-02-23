@@ -5,13 +5,11 @@
                 <img src="../assets/CoinCompassLogo.png" alt="logo" />
             </router-link>
         </div>
-        <!--         <div class="view-text">{{ props.view }}</div>
- -->
         <ul class="nav-links" :class="{ active: isMenuOpen }">
             <router-link
                 v-for="(link, index) in links"
                 :key="index"
-                active-class="current"
+                active-class="current-nav-item"
                 class="nav-link"
                 :to="link.url"
                 >{{ link.text }}</router-link
@@ -34,14 +32,6 @@
 <script setup lang="ts">
     import { RouterLink } from 'vue-router'
     import { ref } from 'vue'
-
-    /* Prop for what view we are on */
-    /* Just add prop on every view to get this functionality */
-    /* const props = defineProps({
-        view: {
-            type: String
-        }
-    }) */
 
     const isMenuOpen = ref(false)
 
@@ -119,14 +109,7 @@
         transform: scaleX(0.8);
     }
 
-    /* .nav-link:hover {
-        text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
-        text-decoration: underline;
-        text-underline-offset: 9px;
-    } */
-
-    /* When link is active */
-    .current {
+    .current-nav-item {
         font-weight: 500;
     }
 

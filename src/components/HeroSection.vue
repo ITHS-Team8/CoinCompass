@@ -8,7 +8,9 @@
                 farewell to worries, and embrace peace of mind. Simplify, take
                 control & transform your finances today!
             </p>
-            <router-link to="/expenses" class="btn1">Expenses</router-link>
+            <router-link to="/expenses" class="btn-filled"
+                >Expenses</router-link
+            >
         </div>
 
         <div class="hero-img-container">
@@ -32,10 +34,8 @@
                 us now!
             </p>
             <div class="btn-container">
-                <router-link to="/" class="btn1">Sign up</router-link>
-                <!-- Har inga routes än -->
-                <router-link to="/" class="btn2">Log in</router-link>
-                <!-- Har inga routes än -->
+                <router-link to="/" class="btn-filled">Sign up</router-link>
+                <router-link to="/" class="btn-unfilled">Log in</router-link>
             </div>
         </div>
     </section>
@@ -51,7 +51,7 @@
                 securely download data in different formats. Keep records tidy
                 and study spending habits. Start today!
             </p>
-            <router-link to="/" class="btn1">Export</router-link>
+            <router-link to="/" class="btn-filled">Export</router-link>
         </div>
 
         <div class="hero-img-container">
@@ -125,12 +125,12 @@
         gap: 1rem;
     }
 
-    .btn-container .btn1 {
+    .btn-container .btn-filled {
         margin: 0rem;
         margin-top: 0.4rem;
         background-color: var(--primary-color);
     }
-    .btn1 {
+    .btn-filled {
         display: block;
         width: 160px;
         height: 50px;
@@ -148,11 +148,11 @@
         transition: background-color 0.3s ease;
     }
 
-    .btn1:hover {
+    .btn-filled:hover {
         background-color: #257c29;
     }
 
-    .btn2 {
+    .btn-unfilled {
         display: block;
         width: 160px;
         height: 50px;
@@ -169,7 +169,7 @@
         transition: background-color 0.3s ease;
     }
 
-    .btn2:hover {
+    .btn-unfilled:hover {
         background-color: #f5f5f5;
     }
 
