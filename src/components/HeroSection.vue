@@ -1,7 +1,7 @@
 <template>
     <section id="hero-section1" class="hero-section">
         <div class="hero-text-container">
-            <h1>Track your expenses</h1>
+            <h1>Track your <span class="green-word">expenses</span></h1>
             <h3>Simplify your spending</h3>
             <p>
                 Manage expenses effortlessly! Track spending with ease, bid
@@ -24,7 +24,7 @@
         </div>
 
         <div class="hero-text-container">
-            <h1>Create your account</h1>
+            <h1><span class="green-word">Create</span> your account</h1>
             <h3>Personalize your experience</h3>
             <p>
                 Tailor your experience by creating an account. Enjoy advanced
@@ -44,14 +44,14 @@
 
     <section id="hero-section3" class="hero-section">
         <div class="hero-text-container">
-            <h1>Export your expenses</h1>
+            <h1><span class="green-word">Export</span> your expenses</h1>
             <h3>Effortlessly manage your data</h3>
             <p>
                 Make your finances easier by exporting expenses. With one click,
                 securely download data in different formats. Keep records tidy
                 and study spending habits. Start today!
             </p>
-            <router-link to="/expenses" class="btn1">Expenses</router-link>
+            <router-link to="/" class="btn1">Export</router-link>
         </div>
 
         <div class="hero-img-container">
@@ -76,7 +76,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 5rem;
+        gap: 10rem;
     }
 
     .hero-img-container {
@@ -112,6 +112,13 @@
         margin-top: 0.4rem;
     }
 
+    .green-word {
+        color: var(--secondary-color);
+        text-shadow:
+            1px 4px 3px rgba(0, 0, 0, 0.1),
+            0px -2px 5px rgba(255, 255, 255, 0.1);
+    }
+
     .btn-container {
         display: flex;
         justify-content: center;
@@ -121,6 +128,7 @@
     .btn-container .btn1 {
         margin: 0rem;
         margin-top: 0.4rem;
+        background-color: var(--primary-color);
     }
     .btn1 {
         display: block;
@@ -152,7 +160,7 @@
         font-weight: 600;
         padding: 0.8rem 2.5rem;
         margin-top: 0.4rem;
-        border: 2px solid #298a2d;
+        border: 2px solid var(--primary-color);
         border-radius: 30px;
         background-color: #eaeaea;
         color: black;
@@ -162,7 +170,7 @@
     }
 
     .btn2:hover {
-        background-color: #dcdcdc;
+        background-color: #f5f5f5;
     }
 
     hr {
