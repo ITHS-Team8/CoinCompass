@@ -196,6 +196,15 @@
             text-align: center;
         }
 
+        /* Gör h1 lite mindre för mobile view */
+        .hero-text-container h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        .hero-text-container h3 {
+            font-size: 1.3rem;
+        }
+
         .hero-img-container {
             max-width: 310px;
         }
