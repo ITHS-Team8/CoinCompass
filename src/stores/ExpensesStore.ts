@@ -31,6 +31,13 @@ export const useExpensesStore = defineStore('expensesStore', {
                 name: expense.name,
                 amount: expense.amount
             })
+        },
+        /* Edit item */
+        editExpense(expense: { id: number; name: string; amount: number }) {
+            const index = this.expenses.findIndex(
+                (item) => item.id === expense.id
+            )
+            this.expenses[index] = expense
         }
     }
 })

@@ -10,7 +10,7 @@
     <div>
         <div v-for="expense in expensesStore.expenses">
             <h1>{{ expense.name }} - {{ expense.amount }}</h1>
-            <button>Edit</button>
+            <button @click="editExpense(expense.id)">Edit</button>
             <button @click="expensesStore.removeExpense(expense.id)">
                 Delete
             </button>
@@ -44,6 +44,11 @@
 
         name.value = ''
         amount.value = ''
+    }
+
+    function editExpense(id: number) {
+        console.log('Edit expense', id)
+        expensesStore.editExpense({ id: id, name: 'New name', amount: 1000 })
     }
 </script>
 
