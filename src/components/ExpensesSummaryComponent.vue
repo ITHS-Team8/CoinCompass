@@ -21,8 +21,7 @@
         <div>
             <input type="text" v-model="name" />
             <input type="text" v-model="amount" />
-            <!--             <button @click="addExpense">Add expense</button>
- -->
+            <button @click="addExpense">Add expense</button>
         </div>
     </div>
 </template>
@@ -35,6 +34,17 @@
 
     const name = ref('')
     const amount = ref('')
+
+    function addExpense() {
+        expensesStore.addExpense({
+            name: name.value,
+            amount: Number(amount.value)
+        })
+        console.log(expensesStore.expenses)
+
+        name.value = ''
+        amount.value = ''
+    }
 </script>
 
 <style scoped>

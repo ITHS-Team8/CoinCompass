@@ -23,6 +23,14 @@ export const useExpensesStore = defineStore('expensesStore', {
             this.expenses = this.expenses.filter((expense) => {
                 return expense.id !== id
             })
+        },
+        /* Adds item */
+        addExpense(expense: { name: string; amount: number }) {
+            this.expenses.push({
+                id: this.expenses.length + 1,
+                name: expense.name,
+                amount: expense.amount
+            })
         }
     }
 })
