@@ -3,12 +3,15 @@
     <div class="container">
         <div class="text-container">
             <span class="total-text">Total expenses</span>
-            <span class="total-text">$500</span>
+            <span class="total-text">{{ expensesStore.totalAmount }}kr</span>
         </div>
     </div>
 
     <div>
-        <h1>{{ expensesStore.expenses }}</h1>
+        <div v-for="expense in expensesStore.expenses">
+            <h1>{{ expense.name }} - {{ expense.amount }}</h1>
+        </div>
+        <h1>{{ expensesStore.totalAmount }}kr</h1>
     </div>
 </template>
 
@@ -21,7 +24,7 @@
 <style scoped>
     .container {
         margin: auto;
-        margin-top: 10vh; /* Temporary för att se den */
+        margin-top: 10vh; /* Temporary för att se den (Den hamnar under navbaren.) */
 
         display: flex;
         justify-content: center;
