@@ -16,13 +16,25 @@
             </button>
         </div>
         <h1>{{ expensesStore.totalAmount }}kr</h1>
+        <h1>{{ expensesStore.expenses.length }}</h1>
+
+        <div>
+            <input type="text" v-model="name" />
+            <input type="text" v-model="amount" />
+            <!--             <button @click="addExpense">Add expense</button>
+ -->
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
     import { useExpensesStore } from '../stores/ExpensesStore'
+    import { ref } from 'vue'
 
     const expensesStore = useExpensesStore()
+
+    const name = ref('')
+    const amount = ref('')
 </script>
 
 <style scoped>
