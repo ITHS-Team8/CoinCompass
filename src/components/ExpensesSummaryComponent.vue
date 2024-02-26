@@ -6,9 +6,17 @@
             <span class="total-text">$500</span>
         </div>
     </div>
+
+    <div>
+        <h1>{{ expensesStore.expenses }}</h1>
+    </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+    import { useExpensesStore } from '../stores/ExpensesStore'
+
+    const expensesStore = useExpensesStore()
+</script>
 
 <style scoped>
     .container {
