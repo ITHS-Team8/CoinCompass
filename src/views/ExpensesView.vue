@@ -5,8 +5,8 @@
 <template>
     <main>
         <NavBar />
-        <h1>Expenses View</h1>
     </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+</style>
