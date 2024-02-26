@@ -10,6 +10,10 @@
     <div>
         <div v-for="expense in expensesStore.expenses">
             <h1>{{ expense.name }} - {{ expense.amount }}</h1>
+            <button>Edit</button>
+            <button @click="expensesStore.removeExpense(expense.id)">
+                Delete
+            </button>
         </div>
         <h1>{{ expensesStore.totalAmount }}kr</h1>
     </div>

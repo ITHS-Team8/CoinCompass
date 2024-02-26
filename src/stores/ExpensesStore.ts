@@ -16,5 +16,13 @@ export const useExpensesStore = defineStore('expensesStore', {
                 0
             )
         }
+    },
+    actions: {
+        /* Removes the chosen item*/
+        removeExpense(id: number) {
+            this.expenses = this.expenses.filter((expense) => {
+                return expense.id !== id
+            })
+        }
     }
 })
