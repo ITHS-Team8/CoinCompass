@@ -2,10 +2,12 @@
 defineProps({
     userName: {
         type: String,
-        required: true,
-        default: 'userName'
+        required: true
     },
-    avatarUrl: String,
+    avatarUrl: {
+        type: String,
+        required: true
+    }
 })
 </script>
 
