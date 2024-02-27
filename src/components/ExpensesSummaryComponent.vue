@@ -9,7 +9,10 @@
 
     <div>
         <div v-for="expense in expensesStore.expenses">
-            <h1>{{ expense.name }} - {{ expense.amount }}</h1>
+            <h1>
+                #{{ expense.id }} {{ expense.name }} - {{ expense.amount }} -
+                {{ expense.category }} - {{ expense.comment }}
+            </h1>
             <button @click="editExpense(expense.id)">Edit</button>
             <button @click="expensesStore.removeExpense(expense.id)">
                 Delete
@@ -38,7 +41,9 @@
     function addExpense() {
         expensesStore.addExpense({
             name: name.value,
-            amount: Number(amount.value)
+            amount: Number(amount.value),
+            category: 'Food Test',
+            comment: 'Comment Test'
         })
         console.log(expensesStore.expenses)
 
@@ -48,7 +53,13 @@
 
     function editExpense(id: number) {
         console.log('Edit expense', id)
-        expensesStore.editExpense({ id: id, name: 'New name', amount: 1000 })
+        expensesStore.editExpense({
+            id: id,
+            name: 'New name',
+            amount: 1000,
+            category: 'Food',
+            comment: 'New comment'
+        })
     }
 </script>
 
