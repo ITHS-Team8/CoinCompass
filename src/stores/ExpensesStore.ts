@@ -40,7 +40,6 @@ export const useExpensesStore = defineStore('expensesStore', {
                 return expense.id !== id
             })
         },
-        /* Adds item */
         addExpense(expense: {
             name: string
             amount: number
@@ -55,7 +54,6 @@ export const useExpensesStore = defineStore('expensesStore', {
                 comment: expense.comment
             })
         },
-        /* Edit item */
         editExpense(expense: {
             id: number
             name: string

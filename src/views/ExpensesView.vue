@@ -7,7 +7,6 @@
     <main>
         <NavBar />
         <ExpensesSummary />
-        <h1>Expenses View</h1>
     </main>
 </template>
 
