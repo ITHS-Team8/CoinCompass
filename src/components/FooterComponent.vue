@@ -9,7 +9,7 @@
                 <ul>
                     <li><RouterLink to="/expenses">Expenses</RouterLink></li>
                     <li><RouterLink to="/account">Account</RouterLink></li>
-                    <li><RouterLink to="about">About</RouterLink></li>
+                    <li><RouterLink to="/about">About</RouterLink></li>
                 </ul>
             </nav>
             <img
@@ -43,7 +43,6 @@
             <p class="copyright_text">Copyright @ Team 8</p>
         </div>
     </footer>
-    <RouterView />
 </template>
 
 <style scoped>
