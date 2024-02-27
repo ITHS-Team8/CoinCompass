@@ -4,10 +4,11 @@
 </script>
 
 <template>
+  <NavBar />
     <main>
-        <NavBar />
         <ExpensesSummary />
     </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+</style>
