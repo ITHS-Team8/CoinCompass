@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import {RouterLink, RouterView} from 'vue-router'
+    import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
@@ -12,11 +12,33 @@
                     <li><RouterLink to="about">About</RouterLink></li>
                 </ul>
             </nav>
-            <img class="coincompassLogo" src="../assets/CoinCompassLogoTest.png" alt="CoinCompass logo">
+            <img
+                class="coincompassLogo"
+                src="../assets/CoinCompassLogoTest.png"
+                alt="CoinCompass logo"
+            />
             <ul class="social_links">
-                <li><a href=""><img src="../assets/facebooklogo.png" alt="Facebook logo"></a></li>
-                <li><a class="middleLink" href=""><img src="../assets/twitterlogo.png" alt="Instagram logo"></a></li>
-                <li><a href=""><img src="../assets/linkedinlogo.png" alt="Linkedin logo"></a></li>
+                <li>
+                    <a href=""
+                        ><img
+                            src="../assets/facebooklogo.png"
+                            alt="Facebook logo"
+                    /></a>
+                </li>
+                <li>
+                    <a class="middleLink" href=""
+                        ><img
+                            src="../assets/twitterlogo.png"
+                            alt="Instagram logo"
+                    /></a>
+                </li>
+                <li>
+                    <a href=""
+                        ><img
+                            src="../assets/linkedinlogo.png"
+                            alt="Linkedin logo"
+                    /></a>
+                </li>
             </ul>
             <p class="copyright_text">Copyright @ Team 8</p>
         </div>
@@ -28,10 +50,10 @@
     footer {
         width: 100vw;
         height: 25vh;
-        background: #3E6640;
+        background: var(--primary-color);
         margin-top: 4rem;
     }
-    
+
     .main {
         display: flex;
         justify-content: space-around;
@@ -72,10 +94,8 @@
         position: absolute;
         margin-top: 9rem;
     }
-    
-    
-    @media screen and (max-width: 600px) {
 
+    @media screen and (max-width: 600px) {
         footer {
             height: 55vh;
         }
