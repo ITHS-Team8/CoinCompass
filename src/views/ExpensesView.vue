@@ -11,10 +11,16 @@
     <NavBar />
     <main>
         <div class="overview-cards-container">
-            <OverviewCard card-title="Hej" :card-info="'alksdja'" />
-            <OverviewCard card-title="Hej" :card-info="'alksdja'" />
-            <OverviewCard card-title="Hej" :card-info="'alksdja'" />
-            <OverviewCard card-title="Hej" :card-info="'alksdja'" />
+            <OverviewCard
+                card-title="Total expenses"
+                :card-info="`${expensesStore.totalAmount}kr`"
+            />
+            <OverviewCard
+                card-title="Number of transactions"
+                :card-info="`${expensesStore.expenses.length}st`"
+            />
+            <OverviewCard card-title="'Hej'" card-info="asdfasdfasdf" />
+            <OverviewCard card-title="'Hej'" card-info="asdfasdfasdf" />
         </div>
 
         <ExpensesSummary />
