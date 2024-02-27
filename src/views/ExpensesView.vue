@@ -16,18 +16,25 @@
         <h2 class="over-view-title">Overview</h2>
         <div class="overview-cards-container">
             <OverviewCard
+                class="overview-card"
                 card-title="Total expenses"
                 :card-info="`${expensesStore.totalAmount}kr`"
             />
             <OverviewCard
+                class="overview-card"
                 card-title="Number of transactions"
                 :card-info="`${expensesStore.expenses.length}st`"
             />
             <OverviewCard
+                class="overview-card"
+                card-title="Average cost"
+                :card-info="`${expensesStore.totalAmount / expensesStore.expenses.length}kr`"
+            />
+            <OverviewCard
+                class="overview-card"
                 card-title="Latest purchase"
                 :card-info="`${latestExpense.name} - ${latestExpense.amount}kr`"
             />
-            <OverviewCard card-title="'Hej'" card-info="asdfasdfasdf" />
         </div>
 
         <ExpensesSummary />
