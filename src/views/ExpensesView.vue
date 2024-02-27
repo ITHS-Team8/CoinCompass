@@ -10,6 +10,13 @@
 <template>
     <NavBar />
     <main>
+        <div class="overview-cards-container">
+            <OverviewCard card-title="Hej" :card-info="'alksdja'" />
+            <OverviewCard card-title="Hej" :card-info="'alksdja'" />
+            <OverviewCard card-title="Hej" :card-info="'alksdja'" />
+            <OverviewCard card-title="Hej" :card-info="'alksdja'" />
+        </div>
+
         <ExpensesSummary />
     </main>
 </template>
