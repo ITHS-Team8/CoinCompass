@@ -54,4 +54,14 @@
 </template>
 
 <style scoped>
+    dialog {
+        border: none;
+        border-radius: 6px;
+    }
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        margin: 0.25rem;
+    }
 </style>
