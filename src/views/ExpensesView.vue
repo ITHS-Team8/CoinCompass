@@ -37,6 +37,8 @@
             />
         </div>
 
+        <h3 class="table-heading">All Expenses</h3>
+
         <ExpensesSummary />
     </main>
 </template>
@@ -57,5 +59,17 @@
         margin: auto;
         margin-top: 1rem;
         width: 90%;
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .overview-card {
+        flex-grow: 1;
+    }
+
+    .table-heading {
+        text-align: center;
+        font-size: 2rem;
+        margin-top: 2rem;
     }
 </style>
