@@ -73,6 +73,16 @@
         display: flex;
         flex-direction: column;
         padding: 1rem;
-        margin: 0.25rem;
+        gap: 1rem;
+    }
+    .form-container > div {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    .form-container > div > input, textarea, select {
+        border: 1px solid var(--primary-color);
+        border-radius: 6px;
+        padding: 0.5rem;
     }
 </style>
