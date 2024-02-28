@@ -51,7 +51,7 @@
             <input type="date" id="expenseDate" name="expenseDate" required />
         </div>
 
-        <button>Add Expense</button>
+        <button class="form-button">Add Expense</button>
     </form>
   </dialog>
 </template>
@@ -78,8 +78,25 @@
         padding: 0.5rem;
     }
 
+    .form-container > div > textarea {
+        resize: none;
+    }
+
     .form-container > div > input[type="date"] {
         padding: 0.5rem 0.25rem;
         font-family: Montserrat, sans-serif;
+    }
+
+    .form-button {
+        padding: 0.5rem;
+        border: none;
+        border-radius: 6px;
+        background-color: var(--primary-color);
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .form-button:hover {
+        background-color: var(--secondary-color);
     }
 </style>
