@@ -1,14 +1,6 @@
 <script setup lang="ts">
     import { ref } from "vue";
     const dialog = ref<HTMLDialogElement>();
-
-    const props = defineProps({
-      classes: {
-        type: String,
-        default: "",
-      },
-    })
-
     const visible = ref(false);
 
     const showModal = () => {
