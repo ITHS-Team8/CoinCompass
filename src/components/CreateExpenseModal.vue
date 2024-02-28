@@ -33,6 +33,10 @@
         <label for="expenseAmount">Amount</label>
         <input type="number" id="expenseAmount" name="expenseAmount" required />
 
+        <label for="expenseDescription">Description</label>
+        <textarea id="expenseDescription" name="expenseDescription" required></textarea>
+        
+
         <label for="expenseCategory">Category</label>
         <select id="expenseCategory">
             <option value="none">None</option>
