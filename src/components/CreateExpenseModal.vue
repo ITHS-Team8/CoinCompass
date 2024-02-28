@@ -78,6 +78,10 @@
         padding: 0.5rem;
     }
 
+    .form-container > div > input, textarea, select:focus {
+        outline: none;
+    }
+
     .form-container > div > textarea {
         height: 4rem;
         resize: none;
