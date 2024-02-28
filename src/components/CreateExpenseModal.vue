@@ -79,7 +79,11 @@
     }
 
     .form-container > div > textarea {
+        height: 4rem;
         resize: none;
+        padding: 0.5rem 0.25rem;
+        font-family: Montserrat, sans-serif;
+        font-size: 0.75rem;
     }
 
     .form-container > div > input[type="date"] {
