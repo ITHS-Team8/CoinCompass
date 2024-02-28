@@ -3,11 +3,13 @@
     import ExpensesSummary from '../components/ExpensesSummaryComponent.vue'
     import OverviewCard from '../components/OverviewCard.vue'
 
+    import { computed } from 'vue'
     import { useExpensesStore } from '../stores/ExpensesStore'
     const expensesStore = useExpensesStore()
 
-    const latestExpense =
-        expensesStore.expenses[expensesStore.expenses.length - 1]
+    const latestExpense = computed(() => {
+        return expensesStore.expenses[expensesStore.expenses.length - 1]
+    })
 </script>
 
 <template>
@@ -59,7 +61,7 @@
         margin: auto;
         margin-top: 1rem;
         width: 90%;
-        gap: 2rem;
+        gap: 1.4rem;
         flex-wrap: wrap;
     }
 

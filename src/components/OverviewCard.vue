@@ -26,7 +26,7 @@
         border-radius: 12px;
         background-color: #d9d9d9;
         background-color: #eaeaea; /* Testing */
-        min-width: 300px;
+        min-width: 200px;
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; /* Testing */
     }
     .main-container h3 {
@@ -42,6 +42,7 @@
         align-items: center;
         width: 100%;
         background-color: #c6c4c4;
+        background-color: #d5d4d4; /* testing */
         border-radius: 12px 12px 0 0;
     }
     .content-container {
