@@ -1,5 +1,13 @@
 import { defineStore } from 'pinia'
 
+interface ExpenseItem {
+    id: number
+    name: string
+    amount: number
+    category: string
+    comment: string
+}
+
 export const useExpensesStore = defineStore('expensesStore', {
     state: () => ({
         expenses: [
@@ -54,13 +62,7 @@ export const useExpensesStore = defineStore('expensesStore', {
                 comment: expense.comment
             })
         },
-        editExpense(expense: {
-            id: number
-            name: string
-            amount: number
-            category: string
-            comment: string
-        }) {
+        editExpense(expense: ExpenseItem) {
             const index = this.expenses.findIndex(
                 (item) => item.id === expense.id
             )
