@@ -28,7 +28,7 @@
             <OverviewCard
                 class="overview-card"
                 card-title="Average cost"
-                :card-info="`${expensesStore.totalAmount / expensesStore.expenses.length}kr`"
+                :card-info="`${(expensesStore.totalAmount / expensesStore.expenses.length).toFixed(2)}kr`"
             />
             <OverviewCard
                 class="overview-card"

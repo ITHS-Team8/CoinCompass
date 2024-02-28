@@ -36,10 +36,11 @@ export const useExpensesStore = defineStore('expensesStore', {
     }),
     getters: {
         totalAmount(state) {
-            return state.expenses.reduce(
+            const total = state.expenses.reduce(
                 (total, expense) => total + expense.amount,
                 0
             )
+            return Number(total.toFixed(2))
         }
     },
     actions: {
@@ -57,7 +58,7 @@ export const useExpensesStore = defineStore('expensesStore', {
             this.expenses.push({
                 id: this.expenses.length + 1,
                 name: expense.name,
-                amount: expense.amount,
+                amount: Number(expense.amount.toFixed(2)),
                 category: expense.category,
                 comment: expense.comment
             })
