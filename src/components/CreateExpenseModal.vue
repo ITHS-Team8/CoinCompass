@@ -85,4 +85,9 @@
         border-radius: 6px;
         padding: 0.5rem;
     }
+
+    .form-container > div > input[type="date"] {
+        padding: 0.5rem 0.25rem;
+        font-family: Montserrat, sans-serif;
+    }
 </style>
