@@ -60,6 +60,9 @@
     dialog {
         border: none;
         border-radius: 6px;
+        position: fixed;
+        left: 40%;
+        top: 20%;
     }
     .form-container {
         display: flex;
