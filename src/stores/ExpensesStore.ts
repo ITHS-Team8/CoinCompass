@@ -1,5 +1,9 @@
 import { defineStore } from 'pinia'
 
+interface ExpenseState {
+    expenses: ExpenseItem[]
+}
+
 interface ExpenseItem {
     id: number
     name: string
@@ -9,7 +13,7 @@ interface ExpenseItem {
 }
 
 export const useExpensesStore = defineStore('expensesStore', {
-    state: () => ({
+    state: (): ExpenseState => ({
         expenses: [
             {
                 id: 1,
