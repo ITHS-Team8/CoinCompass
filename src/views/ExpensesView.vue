@@ -1,8 +1,9 @@
 <script setup lang="ts">
     import { ref } from 'vue'
     import NavBar from '../components/NavBar.vue'
+    import ExpensesSummary from '../components/ExpensesSummaryComponent.vue'
+    
     import CreateExpanseModal from '../components/CreateExpenseModal.vue'
-
     const modal = ref<InstanceType<typeof CreateExpanseModal>>();
     const showModal = () => modal.value?.show();
 </script>
@@ -12,7 +13,7 @@
     <main>
         <CreateExpanseModal ref="modal" showCancel />
         <button @click="showModal">Create Expense</button>
-    </main>
+        <ExpensesSummary />
 </template>
 
 <style scoped>
