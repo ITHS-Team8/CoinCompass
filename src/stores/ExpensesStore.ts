@@ -36,6 +36,13 @@ export const useExpensesStore = defineStore('expensesStore', {
                 amount: 80,
                 category: 'Groceries',
                 comment: 'Expensive'
+            },
+            {
+                id: 4,
+                name: 'Hemköp',
+                amount: 100,
+                category: 'Groceries',
+                comment: 'Expensive'
             }
         ]
     }),

@@ -2,7 +2,6 @@
     import NavBar from '../components/NavBar.vue'
     import ExpensesSummary from '../components/ExpensesSummaryComponent.vue'
     import OverviewCard from '../components/OverviewCard.vue'
-    import Test1 from '../components/Test1.vue'
 
     import { computed } from 'vue'
     import { useExpensesStore } from '../stores/ExpensesStore'
@@ -25,7 +24,7 @@
             />
             <OverviewCard
                 class="overview-card"
-                card-title="Number of transactions"
+                card-title="Total transactions"
                 :card-info="`${expensesStore.expenses.length}st`"
             />
             <OverviewCard
