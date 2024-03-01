@@ -6,10 +6,11 @@
     import ExpensesTable from '../components/ExpensesTable.vue'
     import FooterComponent from '../components/FooterComponent.vue'
 
-    import EditExpenseModal from '@/components/EditExpenseModal.vue'
+    import EditExpenseModal from '../components/EditExpenseModal.vue'
     const editModal = ref<InstanceType<typeof EditExpenseModal>>()
     const showEditModal = () => editModal.value?.show()
-
+    
+    import CreateExpanseModal from '../components/CreateExpenseModal.vue'
     const modal = ref<InstanceType<typeof CreateExpanseModal>>()
     const showModal = () => modal.value?.show()
     import OverviewCard from '../components/OverviewCard.vue'
