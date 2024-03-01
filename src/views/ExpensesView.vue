@@ -6,6 +6,13 @@
     import FooterComponent from '../components/FooterComponent.vue'
 
     import CreateExpanseModal from '../components/CreateExpenseModal.vue'
+    const createModal = ref<InstanceType<typeof CreateExpanseModal>>()
+    const showCreateModal = () => createModal.value?.show()
+
+    import EditExpenseModal from '@/components/EditExpenseModal.vue'
+    const editModal = ref<InstanceType<typeof EditExpenseModal>>()
+    const showEditModal = () => editModal.value?.show()
+
     const modal = ref<InstanceType<typeof CreateExpanseModal>>()
     const showModal = () => modal.value?.show()
     import OverviewCard from '../components/OverviewCard.vue'
@@ -23,6 +30,11 @@
     <NavBar />
     <NavBar />
     <main>
+        <CreateExpanseModal ref="createModal" showCancel />
+        <button @click="showCreateModal">Create Expense</button>
+        <EditExpenseModal ref="editModal" showCancel />
+        <button @click="showEditModal">Edit Expense</button>
+
         <CreateExpanseModal ref="modal" showCancel />
 
         <h2 class="over-view-title">Overview</h2>
@@ -64,8 +76,8 @@
         <ExpensesTable />
 
         <ExpensesSummary />
-        <FooterComponent />
     </main>
+    <FooterComponent />
 </template>
 
 <style scoped>

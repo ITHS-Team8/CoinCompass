@@ -17,8 +17,10 @@
 
 <template>
   <dialog ref="dialog" @close="visible = false">
+    <div class="form-header">
+		  <h1>Edit Expense</h1>
+	</div>
     <form v-if="visible" method="dialog" class="form-container">
-        <h1>Create Expense</h1>
         <div>
             <label for="expenseName">Expense</label>
             <input type="text" id="expenseName" name="expenseName" required />
@@ -64,6 +66,13 @@
         left: 40%;
         top: 20%;
     }
+
+    .form-header {
+        background-color: var(--primary-color);
+        color: #FFF;
+        padding: 1rem;
+    }
+
     .form-container {
         display: flex;
         flex-direction: column;
