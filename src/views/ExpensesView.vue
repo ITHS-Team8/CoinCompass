@@ -2,11 +2,11 @@
     import { ref } from 'vue'
     import NavBar from '../components/NavBar.vue'
     import ExpensesSummary from '../components/ExpensesSummaryComponent.vue'
-    import ExpensesTable from '../components/ExpensesTable.vue';
+    import ExpensesTable from '../components/ExpensesTable.vue'
 
     import CreateExpanseModal from '../components/CreateExpenseModal.vue'
-    const modal = ref<InstanceType<typeof CreateExpanseModal>>();
-    const showModal = () => modal.value?.show();
+    const modal = ref<InstanceType<typeof CreateExpanseModal>>()
+    const showModal = () => modal.value?.show()
     import OverviewCard from '../components/OverviewCard.vue'
 
     import { computed } from 'vue'
@@ -54,9 +54,8 @@
         <h3 class="table-heading">All Expenses</h3>
         <ExpensesTable />
 
-
-
         <ExpensesSummary />
+    </main>
 </template>
 
 <style scoped>
