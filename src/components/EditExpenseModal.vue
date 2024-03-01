@@ -8,28 +8,12 @@ const showModal = () => {
   visible.value = true;
 };
 
-defineProps({
-  expense: {
-    type: Object,
-  },
-  expenseId: {
-    type: String,
-  },
-  expenseName: {
-    type: String,
-  },
-  expenseAmount: {
-    type: Number,
-  },
-  expenseDescription: {
-    type: String,
-  },
-  expenseCategory: {
-    type: String,
-  },
-  expenseDate: {
-    type: Date,
-  },
+const expenseObject = ref({
+  expenseName: "Groceries",
+  expenseAmount: 100,
+  expenseDescription: "Bought groceries for the week",
+  expenseCategory: "food",
+  expenseDate: "2021-09-01",
 });
 
 defineExpose({
@@ -41,19 +25,13 @@ defineExpose({
 
 <template>
   <dialog ref="dialog" @close="visible = false">
-	<div class="form-header">
-		  <h1>Edit Expense</h1>
-	  </div>
+    <div class="form-header">
+      <h1>Edit Expense</h1>
+    </div>
     <form v-if="visible" method="dialog" class="form-container">
       <div>
         <label for="expenseName">Expense</label>
-        <input
-          type="text"
-          id="expenseName"
-          name="expenseName"
-          required
-          value="{{ props }}"
-        />
+        <input type="text" id="expenseName" name="expenseName" required />
       </div>
 
       <div>
@@ -87,7 +65,7 @@ defineExpose({
         <input type="date" id="expenseDate" name="expenseDate" required />
       </div>
 
-      <button class="form-button">Add Expense</button>
+      <button class="form-button">Edit Expense</button>
     </form>
   </dialog>
 </template>
@@ -103,7 +81,7 @@ dialog {
 
 .form-header {
   background-color: orange;
-  color: #FFF;
+  color: #fff;
   padding: 1rem;
 }
 
@@ -149,12 +127,12 @@ select:focus {
   padding: 0.5rem;
   border: none;
   border-radius: 6px;
-  background-color: var(--primary-color);
+  background-color: orange;
   color: white;
   font-weight: bold;
   cursor: pointer;
 }
 .form-button:hover {
-  background-color: var(--secondary-color);
+  background-color: #ffa500;
 }
 </style>
