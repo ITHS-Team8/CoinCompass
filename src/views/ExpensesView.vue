@@ -3,6 +3,7 @@
     import NavBar from '../components/NavBar.vue'
     import ExpensesSummary from '../components/ExpensesSummaryComponent.vue'
     import ExpensesTable from '../components/ExpensesTable.vue'
+    import FooterComponent from '../components/FooterComponent.vue'
 
     import CreateExpanseModal from '../components/CreateExpenseModal.vue'
     const modal = ref<InstanceType<typeof CreateExpanseModal>>()
@@ -23,7 +24,6 @@
     <NavBar />
     <main>
         <CreateExpanseModal ref="modal" showCancel />
-        <button @click="showModal">Create Expense</button>
 
         <h2 class="over-view-title">Overview</h2>
         <div class="overview-cards-container">
@@ -51,10 +51,20 @@
             />
         </div>
 
-        <h3 class="table-heading">All Expenses</h3>
+        <h3 class="table-heading" v-if="expensesStore.expenses.length > 0">
+            All Expenses
+        </h3>
+        <div class="no-expenses" v-else>
+            <div>
+                <h3 class="table-heading">No expenses yet</h3>
+                <p>Click the button below to add your first expense</p>
+                <button class="add-btn" @click="showModal">Add expense</button>
+            </div>
+        </div>
         <ExpensesTable />
 
         <ExpensesSummary />
+        <FooterComponent />
     </main>
 </template>
 
@@ -86,5 +96,42 @@
         text-align: center;
         font-size: 2rem;
         margin-top: 2rem;
+    }
+
+    .no-expenses {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .no-expenses p {
+        margin: 10px;
+    }
+
+    .no-expenses > div > button {
+        margin: auto;
+    }
+
+    .add-btn {
+        border: none;
+        display: block;
+        height: 60px;
+        font-size: 1rem;
+        text-align: center;
+        font-weight: 600;
+        padding: 0.8rem 2.5rem;
+        border: none;
+        border-radius: 30px;
+        background-color: var(--secondary-color);
+        color: white;
+        text-decoration: none;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        transition: background-color 0.3s ease;
+    }
+
+    .add-btn:hover {
+        background: #257c29;
+        cursor: pointer;
     }
 </style>

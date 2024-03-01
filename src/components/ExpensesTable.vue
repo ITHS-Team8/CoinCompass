@@ -25,7 +25,7 @@
 <template>
     <CreateExpanseModal ref="modal" showCancel />
 
-    <div class="main-container">
+    <div v-if="expensesStore.expenses.length > 0" class="main-container">
         <div class="titles-container">
             <div class="titles">
                 <p class="name">Name</p>
@@ -103,7 +103,7 @@
         </div>
     </div>
 
-    <table>
+    <table v-if="expensesStore.expenses.length > 0">
         <thead>
             <tr>
                 <th>Name</th>
@@ -115,7 +115,7 @@
         <tbody>
             <tr v-for="expense in expensesStore.expenses">
                 <td class="name-td">{{ expense.name }}</td>
-                <td class="sum-td">{{ expense.amount }}</td>
+                <td class="sum-td">{{ expense.amount }}kr</td>
                 <td>{{ expense.category }}</td>
                 <td>
                     <div class="mobile-btn-container">
@@ -149,7 +149,12 @@
             </tr>
         </tbody>
     </table>
-    <button class="add-btn hide-btn" type="button" @click="showModal">
+    <button
+        v-if="expensesStore.expenses.length > 0"
+        class="add-btn hide-btn"
+        type="button"
+        @click="showModal"
+    >
         Add expense
     </button>
 </template>
@@ -238,7 +243,7 @@
         background-color: #d5d4d4;
         border-radius: 20px;
         padding: 20px 2px;
-        position: relative; /* Testing */
+        position: relative;
     }
 
     .expenseTable-items p {
@@ -287,7 +292,8 @@
     }
 
     @media screen and (max-width: 600px) {
-        .main-container {
+        .main-container,
+        .no-expenses {
             display: none;
         }
 
@@ -350,7 +356,8 @@
     }
 
     @media screen and (min-width: 600px) and (max-width: 1000px) {
-        .main-container {
+        .main-container,
+        .no-expenses {
             display: none;
         }
 
