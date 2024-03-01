@@ -2,6 +2,7 @@
     import NavBar from '../components/NavBar.vue'
     import ExpensesSummary from '../components/ExpensesSummaryComponent.vue'
     import OverviewCard from '../components/OverviewCard.vue'
+    import Test1 from '../components/Test1.vue'
 
     import { computed } from 'vue'
     import { useExpensesStore } from '../stores/ExpensesStore'
@@ -28,11 +29,13 @@
                 :card-info="`${expensesStore.expenses.length}st`"
             />
             <OverviewCard
+                v-if="expensesStore.expenses.length > 0"
                 class="overview-card"
                 card-title="Average cost"
                 :card-info="`${(expensesStore.totalAmount / expensesStore.expenses.length).toFixed(2)}kr`"
             />
             <OverviewCard
+                v-if="latestExpense"
                 class="overview-card"
                 card-title="Latest purchase"
                 :card-info="`${latestExpense.name} - ${latestExpense.amount}kr`"
@@ -40,6 +43,8 @@
         </div>
 
         <h3 class="table-heading">All Expenses</h3>
+
+        <Test1 />
 
         <ExpensesSummary />
     </main>

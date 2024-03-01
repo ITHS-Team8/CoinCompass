@@ -20,7 +20,8 @@ export const useExpensesStore = defineStore('expensesStore', {
                 name: 'Lunch',
                 amount: 15,
                 category: 'Food',
-                comment: 'Tasty'
+                comment:
+                    'Tasty, but expensive. I should bring my own lunch next time. But I was too lazy to prepare it.'
             },
             {
                 id: 2,
