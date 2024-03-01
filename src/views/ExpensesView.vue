@@ -4,16 +4,26 @@
     import ExpensesSummary from '../components/ExpensesSummaryComponent.vue'
     
     import CreateExpanseModal from '../components/CreateExpenseModal.vue'
-    const modal = ref<InstanceType<typeof CreateExpanseModal>>();
-    const showModal = () => modal.value?.show();
+    const createModal = ref<InstanceType<typeof CreateExpanseModal>>();
+    const showCreateModal = () => createModal.value?.show();
+
+    import EditExpenseModal from '@/components/EditExpenseModal.vue'
+    const editModal = ref<InstanceType<typeof EditExpenseModal>>();
+    const showEditModal = () => editModal.value?.show();
+
 </script>
 
 <template>
     <NavBar />
     <main>
-        <CreateExpanseModal ref="modal" showCancel />
-        <button @click="showModal">Create Expense</button>
+        <CreateExpanseModal ref="createModal" showCancel />
+        <button @click="showCreateModal">Create Expense</button>
+
+        <EditExpenseModal ref="editModal" showCancel />
+        <button @click="showEditModal">Edit Expense</button>
+
         <ExpensesSummary />
+    </main>
 </template>
 
 <style scoped>
