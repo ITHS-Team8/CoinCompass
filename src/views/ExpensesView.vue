@@ -1,6 +1,12 @@
 <script setup lang="ts">
+    import { ref } from 'vue'
     import NavBar from '../components/NavBar.vue'
     import ExpensesSummary from '../components/ExpensesSummaryComponent.vue'
+    import ExpensesTable from '../components/ExpensesTable.vue';
+
+    import CreateExpanseModal from '../components/CreateExpenseModal.vue'
+    const modal = ref<InstanceType<typeof CreateExpanseModal>>();
+    const showModal = () => modal.value?.show();
     import OverviewCard from '../components/OverviewCard.vue'
 
     import { computed } from 'vue'
@@ -14,7 +20,11 @@
 
 <template>
     <NavBar />
+    <NavBar />
     <main>
+        <CreateExpanseModal ref="modal" showCancel />
+        <button @click="showModal">Create Expense</button>
+
         <h2 class="over-view-title">Overview</h2>
         <div class="overview-cards-container">
             <OverviewCard
@@ -42,11 +52,11 @@
         </div>
 
         <h3 class="table-heading">All Expenses</h3>
+        <ExpensesTable />
 
-        <Test1 />
+
 
         <ExpensesSummary />
-    </main>
 </template>
 
 <style scoped>

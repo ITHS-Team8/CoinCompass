@@ -39,10 +39,24 @@ export const useExpensesStore = defineStore('expensesStore', {
             },
             {
                 id: 4,
-                name: 'Hemköp',
-                amount: 100,
-                category: 'Groceries',
+                name: 'Webhallen',
+                amount: 8000,
+                category: 'Electronics',
                 comment: 'Expensive'
+            },
+            {
+                id: 5,
+                name: 'H&M',
+                amount: 125,
+                category: 'Clothing',
+                comment: 'Fashion'
+            },
+            {
+                id: 6,
+                name: 'Netflix',
+                amount: 125,
+                category: 'Entertainment',
+                comment: 'Fashion'
             }
         ]
     }),
