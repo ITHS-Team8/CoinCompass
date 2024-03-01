@@ -1,14 +1,27 @@
 import { defineStore } from 'pinia'
 
+interface ExpenseState {
+    expenses: ExpenseItem[]
+}
+
+interface ExpenseItem {
+    id: number
+    name: string
+    amount: number
+    category: string
+    comment: string
+}
+
 export const useExpensesStore = defineStore('expensesStore', {
-    state: () => ({
+    state: (): ExpenseState => ({
         expenses: [
             {
                 id: 1,
                 name: 'Lunch',
                 amount: 15,
                 category: 'Food',
-                comment: 'Tasty'
+                comment:
+                    'Tasty, but expensive. I should bring my own lunch next time. But I was too lazy to prepare it.'
             },
             {
                 id: 2,
@@ -49,10 +62,11 @@ export const useExpensesStore = defineStore('expensesStore', {
     }),
     getters: {
         totalAmount(state) {
-            return state.expenses.reduce(
+            const total = state.expenses.reduce(
                 (total, expense) => total + expense.amount,
                 0
             )
+            return Number(total.toFixed(2))
         }
     },
     actions: {
@@ -70,18 +84,12 @@ export const useExpensesStore = defineStore('expensesStore', {
             this.expenses.push({
                 id: this.expenses.length + 1,
                 name: expense.name,
-                amount: expense.amount,
+                amount: Number(expense.amount.toFixed(2)),
                 category: expense.category,
                 comment: expense.comment
             })
         },
-        editExpense(expense: {
-            id: number
-            name: string
-            amount: number
-            category: string
-            comment: string
-        }) {
+        editExpense(expense: ExpenseItem) {
             const index = this.expenses.findIndex(
                 (item) => item.id === expense.id
             )

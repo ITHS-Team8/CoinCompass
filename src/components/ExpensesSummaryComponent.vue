@@ -27,6 +27,7 @@
         padding: 1.2rem;
         width: 90%;
         border-radius: 12px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     }
 
     .total-text {
