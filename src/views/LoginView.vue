@@ -2,13 +2,13 @@
     <NavBar />
     <div class="container">
         <div class="box">
+            <div class="login-side">
+                <LoginComponent />
+            </div>
             <div class="image-side">
                 <div class="image-container">
                     <img src="../assets/loginImg.png" alt="login image" />
                 </div>
-            </div>
-            <div class="login-side">
-                <LoginComponent />
             </div>
         </div>
     </div>
@@ -19,6 +19,10 @@
     import NavBar from '@/components/NavBar.vue'
     import Footer from '@/components/FooterComponent.vue'
     import LoginComponent from '@/components/LoginComponent.vue'
+
+    import { ref } from 'vue'
+
+    const activeForm = ref('login')
 </script>
 
 <style scoped>
@@ -43,6 +47,9 @@
         flex: 1;
         height: 100%;
         width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .image-container {
@@ -61,5 +68,8 @@
         height: 100%;
         background-color: #567057;
         background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 </style>
