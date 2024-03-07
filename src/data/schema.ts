@@ -2,7 +2,7 @@
 import { sql } from "drizzle-orm";
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
-export const usersTable = sqliteTable("users", {
+export const users = sqliteTable("users", {
   id: text("id").primaryKey().unique(),
   username: text("username"),
   password: text("password"),
@@ -14,7 +14,7 @@ export const usersTable = sqliteTable("users", {
   modifedAt: text("modifedAt").default(sql`CURRENT_TIMESTAMP`),
 });
 
-export const expensesTable = sqliteTable("expenses", {
+export const expenses = sqliteTable("expenses", {
   id: text("id").primaryKey().unique(),
   expenseName: text("expenseName"),
   expenseAmount: integer("expenseAmount"),
@@ -23,8 +23,8 @@ export const expensesTable = sqliteTable("expenses", {
   modifedAt: text("modifedAt").default(sql`CURRENT_TIMESTAMP`),
 });
 
-export type User = typeof usersTable.$inferSelect;
-export type InsertUser = typeof usersTable.$inferInsert;
+export type User = typeof users.$inferSelect;
+export type InsertUser = typeof users.$inferInsert;
 
-export type Expense = typeof expensesTable.$inferSelect;
-export type InsertExpense = typeof expensesTable.$inferInsert;
+export type Expense = typeof expenses.$inferSelect;
+export type InsertExpense = typeof expenses.$inferInsert;
