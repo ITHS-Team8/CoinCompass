@@ -3,7 +3,7 @@
 
 <template>
     <div class="form-header">
-		  <h1>Edit Expense</h1>
+		<h1>Create Expense</h1>
 	</div>
     <form method="dialog" class="form-container">
         <div>
