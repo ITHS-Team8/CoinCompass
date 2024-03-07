@@ -14,7 +14,7 @@ export const usersTable = sqliteTable("users", {
   modifedAt: text("modifedAt").default(sql`CURRENT_TIMESTAMP`),
 });
 
-export const expensesTable = sqliteTable("projects", {
+export const expensesTable = sqliteTable("expenses", {
   id: text("id").primaryKey().unique(),
   expenseName: text("expenseName"),
   expenseAmount: integer("expenseAmount"),
