@@ -22,7 +22,6 @@
     "@fortawesome/vue-fontawesome": "^3.0.6",
     "firebase": "^10.8.1",
     "pinia": "^2.1.7",
-    "uuidv4": "^6.2.13",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5"
   },
