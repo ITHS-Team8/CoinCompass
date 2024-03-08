@@ -1,4 +1,23 @@
 <script setup lang="ts">
+    import { addExpense } from '@/firebase/database';
+    import { ref } from 'vue';
+
+    
+    function getCurrentDate() {
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
+        const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+        const day = String(currentDate.getDate()).padStart(2, '0');
+        const formattedDate = `${year}-${month}-${day}`;
+        return formattedDate;
+    }   
+    
+    const expenseCategories = ref(['Food', 'Transport', 'Utilities', 'Entertainment', 'Other']);
+    const expenseName = ref('');
+    const expenseDescription = ref('');
+    const expenseAmount = ref(0);
+    const expenseCategory = ref(expenseCategories.value[0])
+    const expenseDate = ref(getCurrentDate());
 </script>
 
 <template>
@@ -8,37 +27,31 @@
     <form method="dialog" class="form-container">
         <div>
             <label for="expenseName">Expense</label>
-            <input type="text" id="expenseName" name="expenseName" required />
+            <input type="text" id="expenseName" name="expenseName" placeholder="Expense Name" v-model="expenseName"  required />
         </div>
-
         <div>
             <label for="expenseAmount">Amount</label>
-            <input type="number" id="expenseAmount" name="expenseAmount" required />
+            <input type="number" id="expenseAmount" name="expenseAmount" placeholder="Expense Amount" v-model="expenseAmount" required />
         </div>
-
         <div>
             <label for="expenseDescription">Description</label>
-            <textarea id="expenseDescription" name="expenseDescription" required></textarea>
+            <textarea id="expenseDescription" name="expenseDescription" placeholder="Expense Description" v-model="expenseDescription">
+            </textarea>
         </div>
-
         <div>
             <label for="expenseCategory">Category</label>
-            <select id="expenseCategory">
-                <option value="none">None</option>
-                <option value="food">Food</option>
-                <option value="transport">Transport</option>
-                <option value="utilities">Utilities</option>
-                <option value="entertainment">Entertainment</option>
-                <option value="other">Other</option>
+            <select id="expenseCategory" v-model="expenseCategory">
+                <option v-for="category in expenseCategories" :value="category">{{ category }}</option>
             </select>
         </div>
-        
         <div>
             <label for="expenseDate">Date</label>
-            <input type="date" id="expenseDate" name="expenseDate" required />
+            <input type="date" id="expenseDate" name="expenseDate" v-model="expenseDate" required />
         </div>
 
-        <button class="form-button">Add Expense</button>
+        <button class="form-button" @click="addExpense(expenseName, expenseDescription, expenseAmount, expenseCategory)">
+            Add Expense
+        </button>
     </form>
 </template>
 
