@@ -3,8 +3,10 @@
     <div class="container">
         <div class="box">
             <div class="login-side">
-                <LoginComponent v-if="activeForm === 'login'" />
-                <SignupComponent v-else-if="activeForm === 'signup'" />
+                <LoginComponent v-if="loginStore.activeForm === 'login'" />
+                <SignupComponent
+                    v-else-if="loginStore.activeForm === 'signup'"
+                />
             </div>
             <div class="image-side">
                 <div class="image-container">
@@ -22,9 +24,8 @@
     import LoginComponent from '@/components/LoginComponent.vue'
     import SignupComponent from '@/components/SignupComponent.vue'
 
-    import { ref } from 'vue'
-
-    const activeForm = ref<string>('signup')
+    import { useLoginStore } from '../stores/LoginStore'
+    const loginStore = useLoginStore()
 </script>
 
 <style scoped>
@@ -76,7 +77,7 @@
         align-items: center;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 868px) {
         .box {
             width: 90%;
         }

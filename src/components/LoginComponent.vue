@@ -41,7 +41,9 @@
                 <div class="form-link">
                     <span
                         >Dont have an account?
-                        <span class="signup-link">Signup</span></span
+                        <span class="signup-link" @click="changeForm"
+                            >Signup</span
+                        ></span
                     >
                 </div>
             </form>
@@ -52,7 +54,14 @@
 <script setup lang="ts">
     import { ref } from 'vue'
 
+    import { useLoginStore } from '../stores/LoginStore'
+    const loginStore = useLoginStore()
+
     const passwordType = ref('password')
+
+    const changeForm = () => {
+        loginStore.activeForm = 'signup'
+    }
 </script>
 
 <style scoped>
