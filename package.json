@@ -10,7 +10,10 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "drizzle-generate": "npm exec drizzle-kit generate:sqlite --out migrations --schema src/data/schema.ts",
+    "drizzle-push": "npm exec drizzle-kit push:sqlite",
+    "studio": "npm exec drizzle-kit studio"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^6.5.1",
@@ -31,6 +34,8 @@
     "@vue/eslint-config-prettier": "^8.0.0",
     "@vue/eslint-config-typescript": "^12.0.0",
     "@vue/tsconfig": "^0.5.1",
+    "better-sqlite3": "^9.4.3",
+    "drizzle-kit": "^0.20.14",
     "eslint": "^8.49.0",
     "eslint-plugin-vue": "^9.17.0",
     "npm-run-all2": "^6.1.1",
