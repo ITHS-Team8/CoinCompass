@@ -68,7 +68,7 @@
 
     form .field-container {
         width: 100%;
-        height: 48px;
+        height: 40px;
         margin-top: 1.4rem;
         position: relative;
     }
@@ -84,8 +84,9 @@
     }
 
     .field-container input {
-        border: 1px solid var(--primary-color);
         padding: 0 10px;
+        background-color: #eff1f7;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     }
 
     .form-link {

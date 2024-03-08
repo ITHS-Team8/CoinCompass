@@ -24,7 +24,7 @@
 
     import { ref } from 'vue'
 
-    const activeForm = ref('login')
+    const activeForm = ref('signup')
 </script>
 
 <style scoped>
@@ -33,6 +33,7 @@
         justify-content: center;
         align-items: center;
         background-color: white;
+        background-color: #eff1f7;
         width: 100%;
         height: 95vh;
         margin-top: 8vh;
