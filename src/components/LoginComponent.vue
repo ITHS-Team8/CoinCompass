@@ -5,13 +5,19 @@
 
             <form action="#">
                 <div class="field-container input-field">
-                    <input type="text" placeholder="Username" class="input" />
+                    <input
+                        type="text"
+                        placeholder="Username"
+                        required
+                        class="input"
+                    />
                 </div>
 
                 <div class="field-container input-field">
                     <input
                         :type="passwordType"
                         placeholder="Password"
+                        required
                         class="password"
                     />
                     <svg
@@ -98,6 +104,10 @@
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     }
 
+    .field-container input:focus {
+        border: 1px solid var(--secondary-color);
+    }
+
     .form-link {
         text-align: center;
         margin-top: 10px;
@@ -124,7 +134,7 @@
     .show-password {
         width: 20px;
         position: absolute;
-        top: 15px;
+        top: 12px;
         right: 14px;
         fill: grey;
         cursor: pointer;

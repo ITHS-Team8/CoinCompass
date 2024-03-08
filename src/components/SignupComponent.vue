@@ -9,6 +9,7 @@
                         type="text"
                         placeholder="Email"
                         name="email"
+                        required
                         class="input"
                     />
                 </div>
@@ -18,6 +19,7 @@
                         type="text"
                         placeholder="Username"
                         name="username"
+                        required
                         class="input"
                     />
                 </div>
@@ -27,6 +29,7 @@
                         :type="passwordType"
                         placeholder="Password"
                         name="password"
+                        required
                         class="password"
                     />
                     <svg
@@ -50,6 +53,7 @@
                         type="date"
                         placeholder="yyyy-mm-dd"
                         name="birthday"
+                        required
                         class="input"
                     />
                 </div>
@@ -61,6 +65,7 @@
                             name="gender"
                             id="man"
                             value="man"
+                            required
                             class="radio-input"
                         />
                         <label for="man" class="radio-label">Man</label>
@@ -84,12 +89,8 @@
                     </div>
                 </div>
 
-                <div class="form-link">
-                    <span class="forgot-pass">Forgot password?</span>
-                </div>
-
                 <div class="field-container button-field">
-                    <button>Login</button>
+                    <button>Sign up</button>
                 </div>
 
                 <div class="form-link">
@@ -151,6 +152,10 @@
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     }
 
+    .field-container input:focus {
+        border: 1px solid var(--secondary-color);
+    }
+
     .form-link {
         text-align: center;
         margin-top: 10px;
@@ -177,7 +182,7 @@
     .show-password {
         width: 20px;
         position: absolute;
-        top: 15px;
+        top: 12px;
         right: 14px;
         fill: grey;
         cursor: pointer;
