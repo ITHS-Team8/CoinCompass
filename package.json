@@ -10,19 +10,16 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "format": "prettier --write src/",
-    "drizzle-generate": "npm exec drizzle-kit generate:sqlite --out migrations --schema src/data/schema.ts",
-    "drizzle-push": "npm exec drizzle-kit push:sqlite",
-    "studio": "npm exec drizzle-kit studio"
+    "format": "prettier --write src/"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^6.5.1",
     "@fortawesome/free-regular-svg-icons": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/vue-fontawesome": "^3.0.6",
-    "@types/better-sqlite3": "^7.6.9",
-    "drizzle-orm": "^0.29.5",
+    "firebase": "^10.8.1",
     "pinia": "^2.1.7",
+    "sqlocal": "^0.7.1",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5"
   },
