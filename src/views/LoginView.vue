@@ -24,7 +24,7 @@
 
     import { ref } from 'vue'
 
-    const activeForm = ref('signup')
+    const activeForm = ref<string>('signup')
 </script>
 
 <style scoped>
@@ -74,5 +74,14 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    @media (max-width: 768px) {
+        .box {
+            width: 90%;
+        }
+        .image-side {
+            display: none;
+        }
     }
 </style>
