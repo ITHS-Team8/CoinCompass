@@ -38,7 +38,8 @@
     const links = ref([
         { text: 'Expenses', url: '/expenses' },
         { text: 'Account', url: '/account' },
-        { text: 'About', url: '/about' }
+        { text: 'About', url: '/about' },
+        { text: 'Login', url: '/login' }
     ])
 
     function toggleMenu() {
@@ -83,7 +84,7 @@
         color: white;
         padding: 0.8rem;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-        border-radius: 6px;
+        border-radius: 8px;
         transition: all 0.3s ease;
     }
 
@@ -131,6 +132,13 @@
         margin: 5px auto;
         transition: all 0.4s ease-in-out;
         background-color: white;
+    }
+
+    .nav-links .nav-link:last-child {
+        background-color: #38b6ff;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
     @media (max-width: 900px) {
