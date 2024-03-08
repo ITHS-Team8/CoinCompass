@@ -26,12 +26,10 @@ const userCurrency = ref('SEK')
 
 const changePassword = () => {
   console.log('Det nya lösenordet är:', userPassword.value)
-  // änra lösenord
 }
 
 const changeCurrency = () => {
   console.log('Den valda valutan är:', userCurrency.value)
-  //ändra valuta
 }
 </script>
 

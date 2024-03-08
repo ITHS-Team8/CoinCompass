@@ -1,7 +1,6 @@
 
 <template>
   <div class="about">
-    <div class="container mx-auto px-6 py-10">
       <h1 class="text-4xl font-bold text-center mb-4">About CoinCompass</h1>
       <p class="text-lg text-gray-700 text-center mb-8">
         CoinCompass is your trusted partner in financial management. We've been helping users from all over the globe navigate the complexities of personal finance with our intuitive expense tracking platform.
