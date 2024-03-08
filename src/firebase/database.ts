@@ -1,5 +1,5 @@
 import db from '@/firebase'
-import { doc, setDoc, deleteDoc, getDocs, collection, type DocumentData } from "firebase/firestore";
+import { doc, setDoc, deleteDoc, getDocs, getDoc, collection, type DocumentData } from "firebase/firestore";
 
 /**
  * Adds an expense to the database.
@@ -76,4 +76,20 @@ export async function getExpenses(): Promise<DocumentData[]> {
     const querySnapshot = await getDocs(collection(db, "expenses"));
     const expenses = Array.from(querySnapshot.docs, doc => doc.data());
     return expenses;
+}
+
+/**
+ * Retrieves an expense from the database.
+ * @param expenseId - The ID of the expense to retrieve.
+ * @returns A Promise that resolves to the expense data if it exists, or false if it doesn't.
+ */
+export async function getExpense(expenseId: string): Promise<boolean | DocumentData> {
+    const docRef = doc(db, "expenses", expenseId);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      return docSnap.data();
+    }
+    else {
+      return false;
+    }
 }
