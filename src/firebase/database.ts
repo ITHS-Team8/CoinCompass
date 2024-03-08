@@ -1,4 +1,4 @@
-import db from '@/firebase'
+import db from '../main'
 import { doc, setDoc, deleteDoc, getDocs, getDoc, collection, type DocumentData } from "firebase/firestore";
 
 export type Expense = {
