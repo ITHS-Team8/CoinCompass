@@ -20,9 +20,6 @@
     import ModalComponent from '../components/ModalComponent.vue'
     const createExpense = ref<InstanceType<typeof ModalComponent>>()
     const showCreateModal = () => createExpense.value?.show()
-
-
-
 </script>
 
 <template>
