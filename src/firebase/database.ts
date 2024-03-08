@@ -1,5 +1,5 @@
 import db from '@/firebase'
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, deleteDoc } from "firebase/firestore";
 
 /**
  * Adds an expense to the database.
@@ -52,5 +52,20 @@ export async function updateExpense(expenseId: string, updatedName: string, upda
         });
       } catch (e) {
         console.error("Error updating document: ", e);
+    }
+}
+
+/**
+ * Deletes an expense document from the database.
+ * 
+ * @param expenseId - The ID of the expense document to delete.
+ * @returns A promise that resolves when the document is successfully deleted.
+ */
+export async function deleteExpense(expenseId: string) {
+    try {
+        await deleteDoc(doc(db, "expenses", expenseId));
+    }
+    catch (e) {
+        console.error("Error deleting document: ", e);
     }
 }
