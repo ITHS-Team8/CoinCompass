@@ -3,7 +3,8 @@
     <div class="container">
         <div class="box">
             <div class="login-side">
-                <LoginComponent />
+                <LoginComponent v-if="activeForm === 'login'" />
+                <SignupComponent v-else-if="activeForm === 'signup'" />
             </div>
             <div class="image-side">
                 <div class="image-container">
@@ -19,6 +20,7 @@
     import NavBar from '@/components/NavBar.vue'
     import Footer from '@/components/FooterComponent.vue'
     import LoginComponent from '@/components/LoginComponent.vue'
+    import SignupComponent from '@/components/SignupComponent.vue'
 
     import { ref } from 'vue'
 
