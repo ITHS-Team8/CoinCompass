@@ -1,6 +1,16 @@
 import db from '@/firebase'
 import { doc, setDoc, deleteDoc, getDocs, getDoc, collection, type DocumentData } from "firebase/firestore";
 
+export type Expense = {
+    expenseId: string,
+    expenseName: string,
+    expenseDescription: string,
+    expenseAmount: number,
+    expenseCategory: string,
+    createdAt: Date,
+    modifiedAt: Date
+}
+
 /**
  * Adds an expense to the database.
  * 
@@ -72,9 +82,20 @@ export async function deleteExpense(expenseId: string) {
  * Retrieves expenses from the Firestore database.
  * @returns A promise that resolves to an array of DocumentData representing the expenses.
  */
-export async function getExpenses(): Promise<DocumentData[]> {
+export async function getExpenses() {
     const querySnapshot = await getDocs(collection(db, "expenses"));
-    const expenses = Array.from(querySnapshot.docs, doc => doc.data());
+    const querySnapshotData = querySnapshot.docs.map((doc) => doc.data());
+    const expenses: Expense[] = querySnapshotData.map((doc) => {
+        return {
+            expenseId: doc.expenseId,
+            expenseName: doc.expenseName,
+            expenseDescription: doc.expenseDescription,
+            expenseAmount: doc.expenseAmount,
+            expenseCategory: doc.expenseCategory,
+            createdAt: doc.createdAt,
+            modifiedAt: doc.modifiedAt
+        }
+    }, []);
     return expenses;
 }
 
