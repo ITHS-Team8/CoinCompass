@@ -1,5 +1,5 @@
 import db from '@/firebase'
-import { doc, setDoc, deleteDoc } from "firebase/firestore";
+import { doc, setDoc, deleteDoc, getDocs, collection, type DocumentData } from "firebase/firestore";
 
 /**
  * Adds an expense to the database.
@@ -28,8 +28,6 @@ export async function addExpense(name: string, description: string, amount: numb
         console.error("Error adding document: ", e);
       }
 }
-
-
 
 /**
  * Updates an expense in the database.
@@ -68,4 +66,14 @@ export async function deleteExpense(expenseId: string) {
     catch (e) {
         console.error("Error deleting document: ", e);
     }
+}
+
+/**
+ * Retrieves expenses from the Firestore database.
+ * @returns A promise that resolves to an array of DocumentData representing the expenses.
+ */
+export async function getExpenses(): Promise<DocumentData[]> {
+    const querySnapshot = await getDocs(collection(db, "expenses"));
+    const expenses = Array.from(querySnapshot.docs, doc => doc.data());
+    return expenses;
 }
