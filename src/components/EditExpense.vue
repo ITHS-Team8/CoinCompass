@@ -1,4 +1,13 @@
-<script lang="ts">
+<script setup lang="ts">
+import { updateExpense, getExpense, type Expense } from '@/firebase/database';
+
+defineProps({
+  expenseObject: {
+    type: Object as () => Expense,
+    required: true,
+  }
+})
+
 </script>
 
 <template>
@@ -8,12 +17,12 @@
     <form method="dialog" class="form-container">
       <div>
         <label for="expenseName">Expense</label>
-        <input type="text" id="expenseName" name="expenseName" required />
+        <input type="text" id="expenseName" name="expenseName" :value="expenseObject.expenseName" required />
       </div>
 
       <div>
         <label for="expenseAmount">Amount</label>
-        <input type="number" id="expenseAmount" name="expenseAmount" required />
+        <input type="number" id="expenseAmount" name="expenseAmount" :value="expenseObject.expenseAmount" required />
       </div>
 
       <div>
@@ -22,6 +31,7 @@
           id="expenseDescription"
           name="expenseDescription"
           required
+          :value="expenseObject.expenseDescription"
         ></textarea>
       </div>
 
@@ -39,7 +49,7 @@
 
       <div>
         <label for="expenseDate">Date</label>
-        <input type="date" id="expenseDate" name="expenseDate" required />
+        <input type="date" id="expenseDate" name="expenseDate" :value="expenseObject.createdAt" required />
       </div>
 
       <button class="form-button">Edit Expense</button>
