@@ -1,55 +1,57 @@
 <script setup>
 import NavBar from "../components/NavBar.vue";
+import Footer from "../components/FooterComponent.vue"
 </script>
 
 <template>
   <NavBar />
   <main>
-    <NavBar />
-    <div class="about-container">
-      <h1>Välkommen till CoinCompass</h1>
+    <div class="container">
+      <h1>Om Oss</h1>
       <p>
-        CoinCompass är din guide i den digitala valutans värld. Vi erbjuder
-        intuitiva verktyg för att spåra och hantera dina utgifter, skapa konto
-        för personlig anpassning och exportera dina transaktioner på ett säkert
-        sätt.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </p>
       <p>
-        Med en stark grund i finansiell teknik och en passion för innovation,
-        strävar CoinCompass efter att göra kryptohandel enkel och tillgänglig
-        för alla. Oavsett om du är nybörjare eller en erfaren handlare, har vi
-        de verktyg och resurser som behövs för att hjälpa dig att navigera i
-        kryptoekonomin.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </p>
       <p>
-        Vårt mål är att ge våra användare kontroll över sina finanser genom att
-        erbjuda en plattform som är säker, pålitlig och lätt att använda. Bli en
-        del av CoinCompass-familjen idag och ta det första steget mot att
-        förändra din finansiella framtid.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
       </p>
     </div>
   </main>
+  <Footer />
 </template>
 
 <style scoped>
 main {
   margin-top: 10vh;
 }
-
-.about-container {
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 800px;
-  margin: auto;
-  padding: 2rem;
+  margin: 0 auto;
 }
-
-.about-container h1 {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.about-container p {
-  text-align: justify;
-  line-height: 1.5;
-  margin-bottom: 1rem;
+.container p {
+  margin: 1rem;
 }
 </style>
