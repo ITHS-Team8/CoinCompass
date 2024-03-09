@@ -1,13 +1,17 @@
 <script setup lang="ts">
     import { RouterLink } from 'vue-router'
-    import { ref, watch } from 'vue'
-    import { getAuth, signOut } from 'firebase/auth';
+    import { ref } from 'vue'
+    import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 
     const auth = getAuth()
     const isLoggedIn = ref(false)
-    if (auth.currentUser) {
-        isLoggedIn.value = true
-    }
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            isLoggedIn.value = true
+        } else {
+            isLoggedIn.value = false
+        }
+    })
 
     const isMenuOpen = ref(false)
     const links = ref([
