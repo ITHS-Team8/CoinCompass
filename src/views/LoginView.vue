@@ -1,3 +1,13 @@
+<script setup lang="ts">
+    import NavBar from '@/components/NavBar.vue'
+    import Footer from '@/components/FooterComponent.vue'
+    import LoginComponent from '@/components/LoginComponent.vue'
+    import SignupComponent from '@/components/SignupComponent.vue'
+
+    import { useLoginStore } from '../stores/LoginStore'
+    const loginStore = useLoginStore()
+</script>
+
 <template>
     <NavBar />
     <div class="container">
@@ -18,15 +28,6 @@
     <Footer />
 </template>
 
-<script setup lang="ts">
-    import NavBar from '@/components/NavBar.vue'
-    import Footer from '@/components/FooterComponent.vue'
-    import LoginComponent from '@/components/LoginComponent.vue'
-    import SignupComponent from '@/components/SignupComponent.vue'
-
-    import { useLoginStore } from '../stores/LoginStore'
-    const loginStore = useLoginStore()
-</script>
 
 <style scoped>
     .container {
