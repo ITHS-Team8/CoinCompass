@@ -59,48 +59,6 @@ const changeForm = () => {
             />
           </svg>
         </div>
-
-        <div class="field-container input-field">
-          <input
-            type="date"
-            placeholder="yyyy-mm-dd"
-            name="birthday"
-            required
-            class="input"
-          />
-        </div>
-
-        <div class="radios-container">
-          <div class="radio-container">
-            <input
-              type="radio"
-              name="gender"
-              id="man"
-              value="man"
-              required
-              class="radio-input"
-            />
-            <label for="man" class="radio-label">Man</label>
-            <input
-              type="radio"
-              name="gender"
-              id="woman"
-              value="woman"
-              class="radio-input"
-            />
-            <label for="woman" class="radio-label">Woman</label>
-
-            <input
-              type="radio"
-              name="gender"
-              id="other"
-              value="other"
-              class="radio-input"
-            />
-            <label for="other" class="radio-label">Other</label>
-          </div>
-        </div>
-
         <div class="field-container button-field">
           <button>Sign up</button>
         </div>
