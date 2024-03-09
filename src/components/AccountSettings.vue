@@ -1,3 +1,17 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const userPassword = ref('')
+const userCurrency = ref('SEK')
+
+const changePassword = () => {
+  console.log('Det nya lösenordet är:', userPassword.value)
+}
+
+const changeCurrency = () => {
+  console.log('Den valda valutan är:', userCurrency.value)
+}
+</script>
 
 <template>
   <div class="account-settings">
@@ -17,21 +31,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const userPassword = ref('')
-const userCurrency = ref('SEK')
-
-const changePassword = () => {
-  console.log('Det nya lösenordet är:', userPassword.value)
-}
-
-const changeCurrency = () => {
-  console.log('Den valda valutan är:', userCurrency.value)
-}
-</script>
 
 <style scoped>
 .account-settings {
