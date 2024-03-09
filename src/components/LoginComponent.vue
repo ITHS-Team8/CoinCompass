@@ -1,15 +1,41 @@
+<script setup lang="ts">
+    import { ref } from 'vue'
+    import { useLoginStore } from '../stores/LoginStore'
+    const loginStore = useLoginStore()
+    const passwordType = ref('password')
+
+    const changeForm = () => {
+        loginStore.activeForm = 'signup'
+    }
+
+    import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+    import router from '@/router';
+    const auth = getAuth();
+    const userEmail = ref('')
+    const userPassword = ref('')
+    
+    const login = async () => {
+        try {
+            signInWithEmailAndPassword(auth, userEmail.value, userPassword.value);
+            router.push('/')
+        } catch (error) {
+            console.error(error)
+        }
+    }
+</script>
+
 <template>
     <div class="form login">
         <div class="form-content">
             <h2>Login</h2>
-
-            <form action="#">
+            <form>
                 <div class="field-container input-field">
                     <input
                         type="text"
-                        placeholder="Username"
+                        placeholder="Email"
                         required
                         class="input"
+                        v-model="userEmail"
                     />
                 </div>
 
@@ -19,6 +45,7 @@
                         placeholder="Password"
                         required
                         class="password"
+                        v-model="userPassword"
                     />
                     <svg
                         class="show-password"
@@ -41,7 +68,7 @@
                 </div>
 
                 <div class="field-container button-field">
-                    <button>Login</button>
+                    <button type="button" @click="login">Login</button>
                 </div>
 
                 <div class="form-link">
@@ -53,22 +80,10 @@
                     >
                 </div>
             </form>
+            <button @click="login">Login</button>
         </div>
     </div>
 </template>
-
-<script setup lang="ts">
-    import { ref } from 'vue'
-
-    import { useLoginStore } from '../stores/LoginStore'
-    const loginStore = useLoginStore()
-
-    const passwordType = ref('password')
-
-    const changeForm = () => {
-        loginStore.activeForm = 'signup'
-    }
-</script>
 
 <style scoped>
     .form {
