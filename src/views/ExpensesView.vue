@@ -1,6 +1,7 @@
 <script setup lang="ts">
     import { ref } from 'vue'
     import { computed } from 'vue'
+    import router from '@/router';
     import NavBar from '../components/NavBar.vue'
     import ExpensesSummary from '../components/ExpensesSummaryComponent.vue'
     import ExpensesTable from '../components/ExpensesTable.vue'
@@ -20,6 +21,14 @@
     })
     const totalAmount = computed(() => {
         return expenses.reduce((acc, expense) => acc + expense.expenseAmount, 0)
+    })
+
+
+    import { onAuthStateChanged, getAuth } from 'firebase/auth'
+    onAuthStateChanged(getAuth(), (user) => {
+        if (!user) {
+            router.push('/login')
+        }
     })
 </script>
 
