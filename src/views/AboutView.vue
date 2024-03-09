@@ -1,6 +1,6 @@
 <script setup>
 import NavBar from "../components/NavBar.vue";
-import Footer from "../components/FooterComponent.vue"
+import FooterComponent from '@/components/FooterComponent.vue';
 </script>
 
 <template>
@@ -37,12 +37,12 @@ import Footer from "../components/FooterComponent.vue"
       </p>
     </div>
   </main>
-  <Footer />
+  <FooterComponent />
 </template>
 
 <style scoped>
 main {
-  margin-top: 10vh;
+  margin-top: 12vh;
 }
 .container {
   display: flex;
