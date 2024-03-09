@@ -22,6 +22,9 @@ const router = createRouter({
         {
             path: '/expenses',
             name: 'expenses',
+            meta: {
+                requiresAuth: true
+            },
             component: ExpensesView
         },
         {
@@ -37,11 +40,6 @@ const router = createRouter({
             name: 'login',
             component: LoginView
         }
-        /* {
-            path: '/account/:id',
-            name: 'account',
-            component: AccountView
-        } */
     ]
 })
 
