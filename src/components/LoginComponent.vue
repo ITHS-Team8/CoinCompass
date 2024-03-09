@@ -121,6 +121,7 @@
 
     .field-container input:focus {
         border: 1px solid var(--secondary-color);
+        outline: none;
     }
 
     .form-link {
