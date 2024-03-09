@@ -3,9 +3,17 @@
     import Footer from '@/components/FooterComponent.vue'
     import LoginComponent from '@/components/LoginComponent.vue'
     import SignupComponent from '@/components/SignupComponent.vue'
+    import { getAuth, onAuthStateChanged } from 'firebase/auth'
+    import router from '@/router';
 
-    import { useLoginStore } from '../stores/LoginStore'
-    const loginStore = useLoginStore()
+    onAuthStateChanged(getAuth(), (user) => {
+        if (user) {
+            router.push('/');
+        }
+    })
+    import { useLoginStore } from '@/stores/LoginStore';
+    const loginStore = useLoginStore();
+
 </script>
 
 <template>
