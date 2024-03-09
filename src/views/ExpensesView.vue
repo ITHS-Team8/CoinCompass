@@ -65,8 +65,8 @@
                 <button class="add-btn" @click="showModal">Add expense</button>
             </div>
         </div>
-        <ExpensesTable />
         <ExpensesSummary />
+        <ExpensesTable />
     </main>
     <FooterComponent />
 </template>
