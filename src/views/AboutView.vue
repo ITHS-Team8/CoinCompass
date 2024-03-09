@@ -32,6 +32,10 @@ import NavBar from "../components/NavBar.vue";
 </template>
 
 <style scoped>
+main {
+  margin-top: 10vh;
+}
+
 .about-container {
   max-width: 800px;
   margin: auto;
