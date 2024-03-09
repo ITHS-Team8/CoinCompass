@@ -4,6 +4,7 @@ import AboutView from '../views/AboutView.vue'
 import AccountView from '../views/AccountView.vue'
 import ExpensesView from '../views/ExpensesView.vue'
 import LoginView from '../views/LoginView.vue'
+import { getAuth } from 'firebase/auth'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,6 +26,9 @@ const router = createRouter({
         },
         {
             path: '/account',
+            meta: {
+                requiresAuth: true 
+            },
             name: 'account',
             component: AccountView
         },
@@ -39,6 +43,18 @@ const router = createRouter({
             component: AccountView
         } */
     ]
+})
+
+router.beforeEach((to, from, next) => {
+    const auth = getAuth()
+    const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+    const isAuthenticated = auth.currentUser
+    if (requiresAuth && !isAuthenticated) {
+        alert('You must be logged in to access this page')
+        next('/login')
+    } else {
+        next()
+    }
 })
 
 export default router
