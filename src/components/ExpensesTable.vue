@@ -37,6 +37,7 @@
                 <p class="name">Name</p>
                 <p class="sum">Sum</p>
                 <p class="category">Category</p>
+                <p class="name">Date</p>
                 <p class="comment">Comment</p>
             </div>
         </div>
@@ -51,6 +52,7 @@
                 <p>{{ expense.expenseName }}</p>
                 <p>{{ expense.expenseAmount }}kr</p>
                 <p>{{ expense.expenseCategory }}</p>
+                <p>{{ expense.createdAt }}</p>
                 <div
                     class="tooltip"
                     v-if="hoveredIndex === index && tooltips[index].show"
