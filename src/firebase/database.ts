@@ -116,7 +116,7 @@ export async function getExpense(expenseId: string): Promise<boolean | DocumentD
     }
 }
 
-export async function addUserExpense(name: string, description: string, amount: number, category: string) {
+export async function addUserExpense(name: string, description: string, amount: number, category: string, expenseDate: Date) {
     const randomUUID = crypto.randomUUID();
     const auth = getAuth();
     const userId = auth.currentUser?.uid as string;
@@ -128,7 +128,7 @@ export async function addUserExpense(name: string, description: string, amount: 
       expenseDescription: description,
       expenseAmount: amount,
       expenseCategory: category,
-      createdAt: Date.now(),
+      createdAt: expenseDate,
       modifiedAt: Date.now()
     }, { merge: true });  
     console.log('User expense added');
