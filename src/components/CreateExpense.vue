@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import { addExpense } from '@/firebase/database';
+    import { addUserExpense } from '@/firebase/database';
     import { ref } from 'vue';
 
     
@@ -17,7 +17,7 @@
     const expenseDescription = ref('');
     const expenseAmount = ref(0);
     const expenseCategory = ref(expenseCategories.value[0])
-    const expenseDate = ref(getCurrentDate());
+    const expenseDate = ref(new Date);
 </script>
 
 <template>
@@ -49,7 +49,7 @@
             <input type="date" id="expenseDate" name="expenseDate" v-model="expenseDate" required />
         </div>
 
-        <button class="form-button" @click="addExpense(expenseName, expenseDescription, expenseAmount, expenseCategory)">
+        <button class="form-button" @click="addUserExpense(expenseName, expenseDescription, expenseAmount, expenseCategory, expenseDate)">
             Add Expense
         </button>
     </form>
