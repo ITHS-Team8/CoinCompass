@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useLoginStore } from "../stores/LoginStore";
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from "firebase/auth";
 const loginStore = useLoginStore();
 const passwordType = ref("password");
 
@@ -9,7 +9,7 @@ const changeForm = () => {
   loginStore.activeForm = "login";
 };
 
-
+const auth = getAuth();
 const userEmail = ref("");
 const userUsername = ref("");
 const userPassword = ref("");
@@ -22,10 +22,11 @@ const handleSignUp = async () => {
   }
   else {
     try {
-      const userCredential = await createUserWithEmailAndPassword(getAuth(), userEmail.value, userPassword.value);
+      const userCredential = await createUserWithEmailAndPassword(auth, userEmail.value, userPassword.value);
       await updateProfile(userCredential.user, {
         displayName: userUsername.value,
       });
+      await sendEmailVerification(userCredential.user);
     }
     catch (error) {
       console.log(error);
