@@ -12,8 +12,8 @@
         hoveredIndex.value = null
     }
 
-    import { getExpenses, deleteExpense } from '@/firebase/database';
-    const expenses = await getExpenses();
+    import { getUserExpenses, deleteUserExpense } from '@/firebase/database';
+    const expenses = await getUserExpenses();
 
 
     import CreateExpense from './CreateExpense.vue';
@@ -84,7 +84,7 @@
                 <button
                     class="delete-btn"
                     type="button"
-                    @click="deleteExpense(expense.expenseId)"
+                    @click="deleteUserExpense(expense.expenseId)"
                 >
                     <svg
                         style="height: 24px"
@@ -134,7 +134,7 @@
                         ><button
                             class="delete-btn"
                             type="button"
-                            @click="deleteExpense(expense.expenseId)"
+                            @click="deleteUserExpense(expense.expenseId)"
                         >
                             <svg
                                 style="height: 20px"
