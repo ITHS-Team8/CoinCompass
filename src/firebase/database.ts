@@ -134,6 +134,16 @@ export async function addUserExpense(name: string, description: string, amount: 
     console.log('User expense added');
 }
 
+export async function deleteUserExpense(expenseId: string) {
+    const auth = getAuth();
+    const userId = auth.currentUser?.uid as string;
+    const userDoc = doc(db, "users", userId)
+
+    await deleteDoc(doc(userDoc, "expenses", expenseId));
+    console.log('User expense deleted');
+
+}
+
 export async function getUserExpenses() {
     const auth = getAuth();
     const userId = auth.currentUser?.uid as string;
@@ -151,6 +161,5 @@ export async function getUserExpenses() {
               modifiedAt: doc.modifiedAt
           }
       }, []);
-      console.log(expenses);
       return expenses;
 }
