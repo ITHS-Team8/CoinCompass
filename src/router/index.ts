@@ -48,7 +48,6 @@ router.beforeEach((to, from, next) => {
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
     const isAuthenticated = auth.currentUser
     if (requiresAuth && !isAuthenticated) {
-        alert('You must be logged in to access this page')
         next('/login')
     } else {
         next()
