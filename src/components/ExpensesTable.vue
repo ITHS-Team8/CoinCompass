@@ -15,6 +15,11 @@
     import { getUserExpenses, deleteUserExpense } from '@/firebase/database';
     const expenses = await getUserExpenses();
 
+    const deleteUserExpenseAndElement = (expenseId: string) => {
+        const htmlElement = document.getElementById(expenseId);
+        htmlElement?.remove();
+        deleteUserExpense(expenseId)
+    }
 
     import CreateExpense from './CreateExpense.vue';
     import ModalComponent from '../components/ModalComponent.vue'
@@ -40,6 +45,7 @@
             class="expenseTable-items"
             v-for="(expense, index) in expenses"
             :key="index"
+            :id="expense.expenseId"
         >
             <div class="item-info-container">
                 <p>{{ expense.expenseName }}</p>
@@ -84,7 +90,7 @@
                 <button
                     class="delete-btn"
                     type="button"
-                    @click="deleteUserExpense(expense.expenseId)"
+                    @click="deleteUserExpenseAndElement(expense.expenseId)"
                 >
                     <svg
                         style="height: 24px"
