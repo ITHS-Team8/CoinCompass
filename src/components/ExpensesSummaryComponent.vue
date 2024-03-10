@@ -8,8 +8,8 @@
 </template>
 
 <script setup lang="ts">
-    import { getExpenses } from '@/firebase/database';
-    const expenses = await getExpenses();
+    import { getUserExpenses } from '@/firebase/database';
+    const expenses = await getUserExpenses();
     const totalAmount = expenses.reduce((acc, expense) => acc + expense.expenseAmount, 0);
 </script>
 
