@@ -1,5 +1,6 @@
 import db from '../main'
 import { doc, setDoc, deleteDoc, getDocs, getDoc, collection, type DocumentData } from "firebase/firestore";
+import { getAuth } from 'firebase/auth';
 
 export type Expense = {
     expenseId: string,
@@ -113,4 +114,43 @@ export async function getExpense(expenseId: string): Promise<boolean | DocumentD
     else {
       return false;
     }
+}
+
+export async function addUserExpense(name: string, description: string, amount: number, category: string) {
+    const randomUUID = crypto.randomUUID();
+    const auth = getAuth();
+    const userId = auth.currentUser?.uid as string;
+    const userDoc = doc(db, "users", userId)
+    
+    await setDoc(doc(userDoc, "expenses", randomUUID), {
+      expenseId: randomUUID,
+      expenseName: name,
+      expenseDescription: description,
+      expenseAmount: amount,
+      expenseCategory: category,
+      createdAt: Date.now(),
+      modifiedAt: Date.now()
+    }, { merge: true });  
+    console.log('User expense added');
+}
+
+export async function getUserExpenses() {
+    const auth = getAuth();
+    const userId = auth.currentUser?.uid as string;
+  
+    const querySnapshot = await getDocs(collection(db, `users/${userId}/expenses`));
+      const querySnapshotData = querySnapshot.docs.map((doc) => doc.data());
+      const expenses: Expense[] = querySnapshotData.map((doc) => {
+          return {
+              expenseId: doc.expenseId,
+              expenseName: doc.expenseName,
+              expenseDescription: doc.expenseDescription,
+              expenseAmount: doc.expenseAmount,
+              expenseCategory: doc.expenseCategory,
+              createdAt: doc.createdAt,
+              modifiedAt: doc.modifiedAt
+          }
+      }, []);
+      console.log(expenses);
+      return expenses;
 }
