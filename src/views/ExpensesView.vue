@@ -13,8 +13,8 @@
     const modal = ref<InstanceType<typeof ModalComponent>>()
     const showModal = () => modal.value?.show()
 
-    import { getExpenses } from '@/firebase/database';
-    const expenses = await getExpenses();
+    import { getUserExpenses } from '@/firebase/database';
+    const expenses = await getUserExpenses();
 
     const latestExpense = computed(() => {
         return expenses[expenses.length - 1]
@@ -24,12 +24,12 @@
     })
 
 
-    import { onAuthStateChanged, getAuth } from 'firebase/auth'
-    onAuthStateChanged(getAuth(), (user) => {
-        if (!user) {
-            router.push('/login')
-        }
-    })
+    // import { onAuthStateChanged, getAuth } from 'firebase/auth'
+    // onAuthStateChanged(getAuth(), (user) => {
+    //     if (!user) {
+    //         router.push('/login')
+    //     }
+    // })
 </script>
 
 <template>
