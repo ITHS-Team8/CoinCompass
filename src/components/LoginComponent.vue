@@ -80,7 +80,6 @@
                     >
                 </div>
             </form>
-            <button @click="login">Login</button>
         </div>
     </div>
 </template>
