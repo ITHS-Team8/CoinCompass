@@ -1,13 +1,38 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useLoginStore } from "../stores/LoginStore";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 const loginStore = useLoginStore();
-
 const passwordType = ref("password");
 
 const changeForm = () => {
   loginStore.activeForm = "login";
 };
+
+
+const userEmail = ref("");
+const userUsername = ref("");
+const userPassword = ref("");
+const userPasswordConfirm = ref("");
+
+const handleSignUp = async () => {
+  if (userPassword.value !== userPasswordConfirm.value) {
+    alert("Passwords do not match");
+    return;
+  }
+  else {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(getAuth(), userEmail.value, userPassword.value);
+      await updateProfile(userCredential.user, {
+        displayName: userUsername.value,
+      });
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+}
+
 </script>
 
 <template>
@@ -15,7 +40,7 @@ const changeForm = () => {
     <div class="form-content">
       <h2>Sign up</h2>
 
-      <form action="#">
+      <form>
         <div class="field-container input-field">
           <input
             type="text"
@@ -23,6 +48,7 @@ const changeForm = () => {
             name="email"
             required
             class="input"
+            v-model="userEmail"
           />
         </div>
 
@@ -33,6 +59,7 @@ const changeForm = () => {
             name="username"
             required
             class="input"
+            v-model="userUsername"
           />
         </div>
 
@@ -43,6 +70,7 @@ const changeForm = () => {
             name="password"
             required
             class="password"
+            v-model="userPassword"
           />
           <svg
             class="show-password"
@@ -66,6 +94,7 @@ const changeForm = () => {
             name="password"
             required
             class="password"
+            v-model="userPasswordConfirm"
           />
           <svg
             class="show-password"
@@ -83,7 +112,7 @@ const changeForm = () => {
           </svg>
         </div>
         <div class="field-container button-field">
-          <button>Sign up</button>
+          <button type="button" @click="handleSignUp">Sign up</button>
         </div>
 
         <div class="form-link">
