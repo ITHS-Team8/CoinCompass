@@ -71,7 +71,7 @@
             <div>
                 <h3 class="table-heading">No expenses yet</h3>
                 <p>Click the button below to add your first expense</p>
-                <button class="add-btn" @click="showModal">Add expense</button>
+                <button class="add-btn" @click="showModal">Add Your First Expense</button>
             </div>
         </div>
         <ExpensesSummary />
