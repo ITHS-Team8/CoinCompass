@@ -75,6 +75,10 @@ select {
 	outline: none;
 }
 
+input[type='password']:focus {
+	border: 2px solid black;
+}
+
 button {
 	background-color: #298a2d;
 	color: white;
@@ -99,9 +103,5 @@ select {
 	background-position-x: 100%;
 	background-position-y: 50%;
 	cursor: pointer;
-}
-
-input[type='password']::placeholder {
-	color: #888;
 }
 </style>

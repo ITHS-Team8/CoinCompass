@@ -3,6 +3,7 @@ import NavBar from '../components/NavBar.vue';
 import ProfileAvatar from '../components/ProfileAvatar.vue';
 import AccountSettings from '../components/AccountSettings.vue';
 import PersonalInfo from '@/components/PersonalInfo.vue';
+import FooterComponent from '@/components/FooterComponent.vue';
 </script>
 
 <template>
@@ -20,11 +21,13 @@ import PersonalInfo from '@/components/PersonalInfo.vue';
 			</div>
 		</div>
 	</main>
+	<FooterComponent />
 </template>
 
 <style scoped>
 main {
 	margin-top: 12vh;
+	margin-bottom: 2rem;
 }
 .top-container {
 	display: flex;
@@ -37,5 +40,11 @@ main {
 	padding: 28px;
 	width: 100%;
 	border-radius: 12px;
+}
+
+@media (max-width: 868px) {
+	.top-container {
+		flex-direction: column;
+	}
 }
 </style>
