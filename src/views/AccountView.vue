@@ -45,6 +45,7 @@ main {
 @media (max-width: 868px) {
 	.top-container {
 		flex-direction: column;
+		margin: 1rem 5vw;
 	}
 }
 </style>
