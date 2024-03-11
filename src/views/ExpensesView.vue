@@ -22,14 +22,6 @@
     const totalAmount = computed(() => {
         return expenses.reduce((acc, expense) => acc + expense.expenseAmount, 0)
     })
-
-
-    // import { onAuthStateChanged, getAuth } from 'firebase/auth'
-    // onAuthStateChanged(getAuth(), (user) => {
-    //     if (!user) {
-    //         router.push('/login')
-    //     }
-    // })
 </script>
 
 <template>
