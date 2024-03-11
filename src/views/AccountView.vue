@@ -29,7 +29,7 @@ main {
 .top-container {
 	display: flex;
 	flex-direction: row;
-	margin: 0 10vw;
+	margin: 1rem 10vw;
 	gap: 2rem;
 }
 .settings-container {
