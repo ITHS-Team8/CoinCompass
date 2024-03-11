@@ -1,5 +1,8 @@
 <script setup lang="ts">
     import { ref } from 'vue'
+    import { getUserExpenses, deleteUserExpense, type Expense } from '@/firebase/database';
+    
+    const expenses = await getUserExpenses();
 
     const hoveredIndex = ref<number | null>(null)
     const tooltips = ref<{ show: boolean; comment: string }[]>([])
@@ -12,14 +15,30 @@
         hoveredIndex.value = null
     }
 
-    import { getUserExpenses, deleteUserExpense } from '@/firebase/database';
-    const expenses = await getUserExpenses();
-
     const deleteUserExpenseAndElement = (expenseId: string) => {
         const htmlElement = document.getElementById(expenseId);
         htmlElement?.remove();
         deleteUserExpense(expenseId)
     }
+
+    
+    
+    /*
+    import { getAuth } from 'firebase/auth';
+    import { onSnapshot, collection, query, QuerySnapshot, getDocs, setDoc, doc } from 'firebase/firestore';
+    import db from '@/main'
+    const auth = getAuth();
+    const userId = auth.currentUser?.uid as string;
+    const dbCollection = collection(db, `users/${userId}/expenses`);
+    const dbQuery = query(dbCollection);
+    onSnapshot(dbQuery, (querySnapshot) => {
+            const _expenses: Expense[] = [];
+            querySnapshot.forEach((doc) => {
+            _expenses.push(doc.data().name);
+        });
+        console.log('Current Expenses: ', _expenses);
+    });
+    */
 
     import CreateExpense from './CreateExpense.vue';
     import ModalComponent from '../components/ModalComponent.vue'
