@@ -1,16 +1,32 @@
+
+<script setup lang="ts">
+    import { ref } from 'vue';
+    import { getAuth } from 'firebase/auth';
+    import { onSnapshot, collection, query } from 'firebase/firestore';
+    import db from '@/main'
+    let totalAmount = ref(0);
+    
+    const auth = getAuth();
+    const userId = auth.currentUser?.uid as string;
+    const dbCollection = collection(db, `users/${userId}/expenses`);
+    const dbQuery = query(dbCollection);
+    onSnapshot(dbQuery, (querySnapshot) => {
+        let total = 0;
+        querySnapshot.forEach((doc) => {
+            total += doc.data().expenseAmount;
+        });
+        totalAmount.value = total;
+    });
+</script>
+
 <template>
     <div class="container">
         <div class="text-container">
             <span class="total-text">Total expenses</span>
-            <span class="total-text">{{ expensesStore.totalAmount }}kr</span>
+            <span class="total-text">{{ totalAmount }}kr</span>
         </div>
     </div>
 </template>
-
-<script setup lang="ts">
-    import { useExpensesStore } from '../stores/ExpensesStore'
-    const expensesStore = useExpensesStore()
-</script>
 
 <style scoped>
     .container {

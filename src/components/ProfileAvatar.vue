@@ -16,6 +16,7 @@ defineProps({
 		<h1 class="username">{{ userName }}</h1>
 		<img class="avatar-image" :src="avatarUrl" alt="avatar" />
 	</section>
+
 </template>
 
 <style scoped>

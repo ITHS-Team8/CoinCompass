@@ -4,6 +4,7 @@ import AboutView from '../views/AboutView.vue'
 import AccountView from '../views/AccountView.vue'
 import ExpensesView from '../views/ExpensesView.vue'
 import LoginView from '../views/LoginView.vue'
+import { getAuth } from 'firebase/auth'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,10 +22,16 @@ const router = createRouter({
         {
             path: '/expenses',
             name: 'expenses',
+            meta: {
+                requiresAuth: true
+            },
             component: ExpensesView
         },
         {
             path: '/account',
+            meta: {
+                requiresAuth: true 
+            },
             name: 'account',
             component: AccountView
         },
@@ -33,12 +40,18 @@ const router = createRouter({
             name: 'login',
             component: LoginView
         }
-        /* {
-            path: '/account/:id',
-            name: 'account',
-            component: AccountView
-        } */
     ]
+})
+
+router.beforeEach((to, from, next) => {
+    const auth = getAuth()
+    const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+    const isAuthenticated = auth.currentUser
+    if (requiresAuth && !isAuthenticated) {
+        next('/login')
+    } else {
+        next()
+    }
 })
 
 export default router

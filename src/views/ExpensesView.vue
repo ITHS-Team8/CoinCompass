@@ -66,6 +66,7 @@ const latestExpense = computed(() => {
 		<ExpensesSummary />
 	</main>
 	<FooterComponent />
+
 </template>
 
 <style scoped>
