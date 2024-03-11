@@ -1,13 +1,35 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { getAuth, reauthenticateWithCredential } from 'firebase/auth';
+import { updatePassword } from 'firebase/auth';
 
-const userPassword = ref('');
-const userPasswordConfirm = ref('');
+const auth = getAuth();
+const userOldPassword = ref('');
+const userNewPassword = ref('');
+const userNewPasswordConfirm = ref('');
 const userCurrency = ref('SEK');
 
-const changePassword = () => {
-	console.log('Det nya lösenordet är:', userPassword.value);
-};
+function updateUserPassword(oldPassword: string, newPassword: string, newPasswordConfirm: string) {
+	if (oldPassword === '' || newPassword === '' || newPasswordConfirm === '') {
+		alert('Please fill in all fields');
+		return;
+	}
+
+	if (newPassword !== newPasswordConfirm) {
+		alert('New passwords do not match');
+		return;
+	}
+	const user = auth.currentUser;
+	if (user) {
+		updatePassword(user, newPassword)
+			.then(() => {
+				alert('Password updated');
+			})
+			.catch((error) => {
+				alert(error.message);
+			});
+	}
+}
 
 const changeCurrency = () => {
 	console.log('Den valda valutan är:', userCurrency.value);
@@ -20,15 +42,20 @@ const changeCurrency = () => {
 			<h2>Change password</h2>
 			<input
 				type="password"
-				v-model="userPassword"
+				v-model="userOldPassword"
+				placeholder="Old password"
+			/>
+			<input
+				type="password"
+				v-model="userNewPassword"
 				placeholder="New password"
 			/>
 			<input
 				type="password"
-				v-model="userPasswordConfirm"
-				placeholder="Confirm password"
+				v-model="userNewPasswordConfirm"
+				placeholder="Confirm new password"
 			/>
-			<button @click="changePassword">Save new password</button>
+			<button @click="updateUserPassword(userOldPassword, userNewPassword, userNewPasswordConfirm)">Change Password</button>
 		</div>
 
 		<div class="settings-section">
