@@ -1,6 +1,6 @@
 import db from '../main'
 import { doc, setDoc, deleteDoc, getDocs, getDoc, collection, type DocumentData } from "firebase/firestore";
-import { getAuth } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, updateProfile } from 'firebase/auth';
 
 export type Expense = {
     expenseId: string,
@@ -162,4 +162,36 @@ export async function getUserExpenses() {
           }
       }, []);
       return expenses;
+}
+
+export async function signUpUser(email: string, username:string, firstName:string, lastName:string, dateOfBirth: Date, gender:string, password: string, confirmPassword:string) {
+    const auth = getAuth();
+    if (password !== confirmPassword) {
+        console.error('Passwords do not match');
+        return;
+      }
+      else {
+        try {
+          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+          await updateProfile(userCredential.user, {
+            displayName: username,
+            photoURL: 'https://placehold.co/250.png'
+          });
+
+          const userDoc = doc(db, `users/${userCredential.user.uid}`);
+          await setDoc(userDoc, {
+            email: email,
+            username: username,
+            firstName: firstName,
+            lastName: lastName,
+            dateOfBirth: dateOfBirth,
+            gender: gender
+          }); 
+          //await sendEmailVerification(userCredential.user);
+          console.log('User signed up');
+        }
+        catch (error) {
+          console.log(error);
+        }
+      }
 }
