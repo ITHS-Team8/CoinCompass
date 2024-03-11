@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
     import { getUserDetails} from '@/firebase/database';
     const userDetails = await getUserDetails();
 </script>
