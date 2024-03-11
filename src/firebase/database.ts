@@ -10,7 +10,16 @@ export type Expense = {
     expenseCategory: string,
     createdAt: Date,
     modifiedAt: Date
-}
+};
+
+export type User = {
+    email: string,
+    username: string,
+    firstName: string,
+    lastName: string,
+    dateOfBirth: Date
+    gender: string
+};
 
 /**
  * Adds an expense to the database.
@@ -116,6 +125,16 @@ export async function getExpense(expenseId: string): Promise<boolean | DocumentD
     }
 }
 
+/**
+ * Adds an expense to the user's expenses in the database.
+ * 
+ * @param name - The name of the expense.
+ * @param description - The description of the expense.
+ * @param amount - The amount of the expense.
+ * @param category - The category of the expense.
+ * @param expenseDate - The date of the expense.
+ * @returns A promise that resolves when the expense is successfully added to the user's expenses.
+ */
 export async function addUserExpense(name: string, description: string, amount: number, category: string, expenseDate: Date) {
     const randomUUID = crypto.randomUUID();
     const auth = getAuth();
@@ -134,16 +153,24 @@ export async function addUserExpense(name: string, description: string, amount: 
     console.log('User expense added');
 }
 
+/**
+ * Deletes a user's expense document from the database.
+ * 
+ * @param expenseId - The ID of the expense document to delete.
+ * @returns A promise that resolves when the document is successfully deleted.
+ */
 export async function deleteUserExpense(expenseId: string) {
     const auth = getAuth();
     const userId = auth.currentUser?.uid as string;
     const userDoc = doc(db, "users", userId)
 
     await deleteDoc(doc(userDoc, "expenses", expenseId));
-    console.log('User expense deleted');
-
 }
 
+/**
+ * Retrieves the user's expenses from the Firestore database.
+ * @returns A promise that resolves to an array of DocumentData representing the user's expenses.
+ */
 export async function getUserExpenses() {
     const auth = getAuth();
     const userId = auth.currentUser?.uid as string;
@@ -164,6 +191,33 @@ export async function getUserExpenses() {
       return expenses;
 }
 
+/**
+ * Retrieves the user's details from the Firestore database.
+ * @returns A Promise that resolves to the user's data.
+ */
+export async function getUserDetails(): Promise<DocumentData> {
+  const auth = getAuth();
+  const userId = auth.currentUser?.uid;
+  const userDocRef = doc(db, `users/${userId}`);
+  const userDoc = await getDoc(userDocRef);
+  const userData = userDoc.data() as DocumentData;
+  return userData;
+}
+
+
+/**
+ * Signs up a user and adds their details to the database.
+ * 
+ * @param email - The email of the user.
+ * @param username - The username of the user.
+ * @param firstName - The first name of the user.
+ * @param lastName - The last name of the user.
+ * @param dateOfBirth - The date of birth of the user.
+ * @param gender - The gender of the user.
+ * @param password - The password of the user.
+ * @param confirmPassword - The confirmation password of the user.
+ * @returns A promise that resolves when the user is successfully signed up and their details are added to the database.
+ */
 export async function signUpUser(email: string, username:string, firstName:string, lastName:string, dateOfBirth: Date, gender:string, password: string, confirmPassword:string) {
     const auth = getAuth();
     if (password !== confirmPassword) {

@@ -16,8 +16,13 @@ const userPassword = ref('');
 
 const login = async () => {
 	try {
-		signInWithEmailAndPassword(auth, userEmail.value, userPassword.value);
-		router.push('/');
+		signInWithEmailAndPassword(
+			auth,
+			userEmail.value,
+			userPassword.value
+		).then(() => {
+			router.push('/');
+		});
 	} catch (error) {
 		console.error(error);
 		cantLogin.value = true;

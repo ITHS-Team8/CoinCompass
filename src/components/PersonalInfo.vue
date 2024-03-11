@@ -1,24 +1,20 @@
 <script setup lang="ts">
-defineProps({
-    firstName: String,
-    lastName: String,
-    email: String,
-    dateOfBirth: String,
-})
-
-
+    import { getUserDetails} from '@/firebase/database';
+    const userDetails = await getUserDetails();
 </script>
 
 <template>
     <div class="container">
         <div class="title-container">
-            <h1>Personal Info</h1>
+            <h1>Personal Information</h1>
         </div>
-        <div class="info-container">
-            <p>First Name: {{ firstName }}</p>
-            <p>Last Name: {{ lastName }}</p>
-            <p>Date of Birth: {{ dateOfBirth }}</p>
-            <p>Email: {{ email }}</p>
+        <div class="top-container">
+                <h3>Username:</h3><p>{{ userDetails.username }}</p>
+                <h3>Email:</h3><p>{{ userDetails.email }}</p>
+                <h3>First Name:</h3><p>{{ userDetails.firstName }}</p>
+                <h3>Last Name:</h3><p>{{ userDetails.lastName }}</p>
+                <h3>Date of Birth:</h3><p>{{ userDetails.dateOfBirth }}</p>
+                <h3>Gender:</h3><p>{{ userDetails.gender }}</p>
         </div>
     </div>
 </template>
@@ -32,6 +28,21 @@ defineProps({
         border-radius: 12px;
         background-color: #D9D9D9;
     }
+    .top-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        margin: 1rem;
+    }
+    .top-container h3 {
+        font-weight: bold;
+    }
+    .top-container p {
+        margin: .5rem;
+        font-style: italic;
+        font-size: 1.25rem;
+    }
+
     .title-container {
         display: flex;
         justify-content: center;
@@ -41,16 +52,7 @@ defineProps({
         border-radius: 12px 12px 0 0;
     }
     .title-container h1 {
-        padding: 0.5rem;
-    }
-    .info-container {
         padding: 1rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
+        font-size: 2rem;
     }
-    .info-container p {
-        margin: 0.25rem;
-    }
-
 </style>
