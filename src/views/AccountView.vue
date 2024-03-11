@@ -15,7 +15,7 @@ import PersonalInfo from '@/components/PersonalInfo.vue';
 		<div class="top-container">
 			<PersonalInfo />
 			<div class="settings-container">
-				<h2>Inställningar</h2>
+				<h2>Settings</h2>
 				<AccountSettings />
 			</div>
 		</div>
@@ -33,7 +33,9 @@ main {
 	gap: 2rem;
 }
 .settings-container {
-	background-color: #9f9d9d;
-	padding: 20px;
+	background-color: #eaeaea;
+	padding: 28px;
+	width: 100%;
+	border-radius: 12px;
 }
 </style>
