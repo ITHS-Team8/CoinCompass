@@ -10,7 +10,16 @@ export type Expense = {
     expenseCategory: string,
     createdAt: Date,
     modifiedAt: Date
-}
+};
+
+export type User = {
+    email: string,
+    username: string,
+    firstName: string,
+    lastName: string,
+    dateOfBirth: Date
+    gender: string
+};
 
 /**
  * Adds an expense to the database.
@@ -162,6 +171,15 @@ export async function getUserExpenses() {
           }
       }, []);
       return expenses;
+}
+
+export async function getUserDetails(): Promise<DocumentData> {
+  const auth = getAuth();
+  const userId = auth.currentUser?.uid;
+  const userDocRef = doc(db, `users/${userId}`);
+  const userDoc = await getDoc(userDocRef);
+  const userData = userDoc.data() as DocumentData;
+  return userData;
 }
 
 export async function signUpUser(email: string, username:string, firstName:string, lastName:string, dateOfBirth: Date, gender:string, password: string, confirmPassword:string) {
