@@ -1,5 +1,16 @@
-import db from '@/firebase'
+import db from '../main'
 import { doc, setDoc, deleteDoc, getDocs, getDoc, collection, type DocumentData } from "firebase/firestore";
+import { createUserWithEmailAndPassword, getAuth, updateProfile } from 'firebase/auth';
+
+export type Expense = {
+    expenseId: string,
+    expenseName: string,
+    expenseDescription: string,
+    expenseAmount: number,
+    expenseCategory: string,
+    createdAt: Date,
+    modifiedAt: Date
+}
 
 /**
  * Adds an expense to the database.
@@ -72,9 +83,20 @@ export async function deleteExpense(expenseId: string) {
  * Retrieves expenses from the Firestore database.
  * @returns A promise that resolves to an array of DocumentData representing the expenses.
  */
-export async function getExpenses(): Promise<DocumentData[]> {
+export async function getExpenses() {
     const querySnapshot = await getDocs(collection(db, "expenses"));
-    const expenses = Array.from(querySnapshot.docs, doc => doc.data());
+    const querySnapshotData = querySnapshot.docs.map((doc) => doc.data());
+    const expenses: Expense[] = querySnapshotData.map((doc) => {
+        return {
+            expenseId: doc.expenseId,
+            expenseName: doc.expenseName,
+            expenseDescription: doc.expenseDescription,
+            expenseAmount: doc.expenseAmount,
+            expenseCategory: doc.expenseCategory,
+            createdAt: doc.createdAt,
+            modifiedAt: doc.modifiedAt
+        }
+    }, []);
     return expenses;
 }
 
@@ -92,4 +114,84 @@ export async function getExpense(expenseId: string): Promise<boolean | DocumentD
     else {
       return false;
     }
+}
+
+export async function addUserExpense(name: string, description: string, amount: number, category: string, expenseDate: Date) {
+    const randomUUID = crypto.randomUUID();
+    const auth = getAuth();
+    const userId = auth.currentUser?.uid as string;
+    const userDoc = doc(db, "users", userId)
+    
+    await setDoc(doc(userDoc, "expenses", randomUUID), {
+      expenseId: randomUUID,
+      expenseName: name,
+      expenseDescription: description,
+      expenseAmount: amount,
+      expenseCategory: category,
+      createdAt: expenseDate,
+      modifiedAt: Date.now()
+    }, { merge: true });  
+    console.log('User expense added');
+}
+
+export async function deleteUserExpense(expenseId: string) {
+    const auth = getAuth();
+    const userId = auth.currentUser?.uid as string;
+    const userDoc = doc(db, "users", userId)
+
+    await deleteDoc(doc(userDoc, "expenses", expenseId));
+    console.log('User expense deleted');
+
+}
+
+export async function getUserExpenses() {
+    const auth = getAuth();
+    const userId = auth.currentUser?.uid as string;
+  
+    const querySnapshot = await getDocs(collection(db, `users/${userId}/expenses`));
+      const querySnapshotData = querySnapshot.docs.map((doc) => doc.data());
+      const expenses: Expense[] = querySnapshotData.map((doc) => {
+          return {
+              expenseId: doc.expenseId,
+              expenseName: doc.expenseName,
+              expenseDescription: doc.expenseDescription,
+              expenseAmount: doc.expenseAmount,
+              expenseCategory: doc.expenseCategory,
+              createdAt: doc.createdAt,
+              modifiedAt: doc.modifiedAt
+          }
+      }, []);
+      return expenses;
+}
+
+export async function signUpUser(email: string, username:string, firstName:string, lastName:string, dateOfBirth: Date, gender:string, password: string, confirmPassword:string) {
+    const auth = getAuth();
+    if (password !== confirmPassword) {
+        console.error('Passwords do not match');
+        return;
+      }
+      else {
+        try {
+          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+          await updateProfile(userCredential.user, {
+            displayName: username,
+            photoURL: 'https://placehold.co/250.png'
+          });
+
+          const userDoc = doc(db, `users/${userCredential.user.uid}`);
+          await setDoc(userDoc, {
+            email: email,
+            username: username,
+            firstName: firstName,
+            lastName: lastName,
+            dateOfBirth: dateOfBirth,
+            gender: gender
+          }); 
+          //await sendEmailVerification(userCredential.user);
+          console.log('User signed up');
+        }
+        catch (error) {
+          console.log(error);
+        }
+      }
 }

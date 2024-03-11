@@ -2,14 +2,15 @@
     <div class="container">
         <div class="text-container">
             <span class="total-text">Total expenses</span>
-            <span class="total-text">{{ expensesStore.totalAmount }}kr</span>
+            <span class="total-text">{{ totalAmount }}kr</span>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-    import { useExpensesStore } from '../stores/ExpensesStore'
-    const expensesStore = useExpensesStore()
+    import { getUserExpenses } from '@/firebase/database';
+    const expenses = await getUserExpenses();
+    const totalAmount = expenses.reduce((acc, expense) => acc + expense.expenseAmount, 0);
 </script>
 
 <style scoped>

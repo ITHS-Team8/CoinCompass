@@ -1,3 +1,38 @@
+<script setup lang="ts">
+    import { RouterLink } from 'vue-router'
+    import { ref } from 'vue'
+    import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+
+    const auth = getAuth()
+    const isLoggedIn = ref(false)
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            isLoggedIn.value = true
+        } else {
+            isLoggedIn.value = false
+        }
+    })
+
+    const isMenuOpen = ref(false)
+    const links = ref([
+        { text: 'Expenses', url: '/expenses' },
+        { text: 'Account', url: '/account' },
+        { text: 'About', url: '/about' },
+    ])
+
+    function toggleMenu() {
+        isMenuOpen.value = !isMenuOpen.value
+    }
+        
+    function userSignOut() {
+        signOut(auth).then(() => {
+            isLoggedIn.value = false
+        }).catch((error) => {
+            console.error(error)
+        })
+    }
+</script>
+
 <template>
     <nav>
         <div class="logo">
@@ -14,6 +49,8 @@
                 :to="link.url"
                 >{{ link.text }}</router-link
             >
+            <li class="nav-link signout-link" @click="userSignOut" v-if="isLoggedIn">Sign Out</li>
+            <RouterLink class="nav-link login-link" to="/login" v-else="!isLoggedIn">Login</RouterLink>
         </ul>
         <div
             class="hamburger"
@@ -25,27 +62,9 @@
             <span class="bar"></span>
         </div>
     </nav>
-
     <div class="overlay" v-if="isMenuOpen" @click="toggleMenu"></div>
 </template>
 
-<script setup lang="ts">
-    import { RouterLink } from 'vue-router'
-    import { ref } from 'vue'
-
-    const isMenuOpen = ref(false)
-
-    const links = ref([
-        { text: 'Expenses', url: '/expenses' },
-        { text: 'Account', url: '/account' },
-        { text: 'About', url: '/about' },
-        { text: 'Login', url: '/login' }
-    ])
-
-    function toggleMenu() {
-        isMenuOpen.value = !isMenuOpen.value
-    }
-</script>
 
 <style scoped>
     nav {
@@ -134,8 +153,16 @@
         background-color: white;
     }
 
-    .nav-links .nav-link:last-child {
+    .login-link {
         background-color: #38b6ff;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .signout-link {
+        cursor: pointer;
+        background-color: #e64343;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         padding-left: 20px;
         padding-right: 20px;

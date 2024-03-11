@@ -1,9 +1,5 @@
 <script setup lang="ts">
 defineProps({
-    userName: {
-        type: String,
-        required: true
-    },
     avatarUrl: {
         type: String,
         required: true
@@ -13,7 +9,6 @@ defineProps({
 
 <template>
     <section class="avatar-container">
-        <h1 class="username">{{ userName }}</h1>
         <img class="avatar-image" :src="avatarUrl" alt="avatar" />
         <button class="avatar-button">Change Avatar</button>
     </section>

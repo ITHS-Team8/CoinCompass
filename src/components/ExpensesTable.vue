@@ -1,49 +1,77 @@
 <script setup lang="ts">
-    import { useExpensesStore } from '../stores/ExpensesStore'
-    const expensesStore = useExpensesStore()
-
     import { ref } from 'vue'
+    import { getUserExpenses, deleteUserExpense, type Expense } from '@/firebase/database';
+    
+    const expenses = await getUserExpenses();
 
     const hoveredIndex = ref<number | null>(null)
-
     const tooltips = ref<{ show: boolean; comment: string }[]>([])
 
     function showTooltip(index: number, comment: string) {
         hoveredIndex.value = index
         tooltips.value[index] = { show: true, comment }
     }
-
     function hideTooltip() {
         hoveredIndex.value = null
     }
 
-    import CreateExpanseModal from '../components/CreateExpenseModal.vue'
-    const modal = ref<InstanceType<typeof CreateExpanseModal>>()
-    const showModal = () => modal.value?.show()
+    const deleteUserExpenseAndElement = (expenseId: string) => {
+        const htmlElement = document.getElementById(expenseId);
+        htmlElement?.remove();
+        deleteUserExpense(expenseId)
+    }
+
+    
+    
+    /*
+    import { getAuth } from 'firebase/auth';
+    import { onSnapshot, collection, query, QuerySnapshot, getDocs, setDoc, doc } from 'firebase/firestore';
+    import db from '@/main'
+    const auth = getAuth();
+    const userId = auth.currentUser?.uid as string;
+    const dbCollection = collection(db, `users/${userId}/expenses`);
+    const dbQuery = query(dbCollection);
+    onSnapshot(dbQuery, (querySnapshot) => {
+            const _expenses: Expense[] = [];
+            querySnapshot.forEach((doc) => {
+            _expenses.push(doc.data().name);
+        });
+        console.log('Current Expenses: ', _expenses);
+    });
+    */
+
+    import CreateExpense from './CreateExpense.vue';
+    import ModalComponent from '../components/ModalComponent.vue'
+    const createExpense = ref<InstanceType<typeof ModalComponent>>()
+    const showCreateModal = () => createExpense.value?.show()
 </script>
 
 <template>
-    <CreateExpanseModal ref="modal" showCancel />
-
-    <div v-if="expensesStore.expenses.length > 0" class="main-container">
+    <ModalComponent ref="createExpense" showCancel>
+        <CreateExpense/>
+    </ModalComponent>
+    <div v-if="expenses.length > 0" class="main-container">
         <div class="titles-container">
             <div class="titles">
                 <p class="name">Name</p>
                 <p class="sum">Sum</p>
                 <p class="category">Category</p>
+                <p class="name">Date</p>
                 <p class="comment">Comment</p>
             </div>
         </div>
 
         <div
             class="expenseTable-items"
-            v-for="(expense, index) in expensesStore.expenses"
+            v-for="(expense, index) in expenses"
             :key="index"
+            :id="expense.expenseId"
         >
             <div class="item-info-container">
-                <p>{{ expense.name }}</p>
-                <p>{{ expense.amount }}kr</p>
-                <p>{{ expense.category }}</p>
+                <p>{{ expense.expenseName }}</p>
+                <p>{{ expense.expenseAmount }}kr</p>
+                <p>{{ expense.expenseCategory }}</p>
+                <p>{{ expense.createdAt }}</p>
                 <div
                     class="tooltip"
                     v-if="hoveredIndex === index && tooltips[index].show"
@@ -52,7 +80,7 @@
                 </div>
                 <div
                     class="comment-icon"
-                    @mouseenter="showTooltip(index, expense.comment)"
+                    @mouseenter="showTooltip(index, expense.expenseDescription)"
                     @mouseleave="hideTooltip"
                 >
                     <p class="item4">
@@ -68,7 +96,6 @@
                     </p>
                 </div>
             </div>
-
             <div class="btn-container">
                 <button class="edit-btn" type="button" @click="">
                     <svg
@@ -84,7 +111,7 @@
                 <button
                     class="delete-btn"
                     type="button"
-                    @click="expensesStore.removeExpense(expense.id)"
+                    @click="deleteUserExpenseAndElement(expense.expenseId)"
                 >
                     <svg
                         style="height: 24px"
@@ -99,11 +126,13 @@
             </div>
         </div>
         <div class="b">
-            <button class="add-btn" @click="showModal">Add expense</button>
+            <button class="add-btn" @click="showCreateModal">Add expense</button>
         </div>
     </div>
 
-    <table v-if="expensesStore.expenses.length > 0">
+
+    <!--MOBIL-->
+    <table v-if="expenses.length > 0">
         <thead>
             <tr>
                 <th>Name</th>
@@ -113,10 +142,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="expense in expensesStore.expenses">
-                <td class="name-td">{{ expense.name }}</td>
-                <td class="sum-td">{{ expense.amount }}kr</td>
-                <td>{{ expense.category }}</td>
+            <tr v-for="expense in expenses">
+                <td class="name-td">{{ expense.expenseName }}</td>
+                <td class="sum-td">{{ expense.expenseAmount }}kr</td>
+                <td>{{ expense.expenseCategory }}</td>
                 <td>
                     <div class="mobile-btn-container">
                         <button class="edit-btn" type="button" @click="">
@@ -132,7 +161,7 @@
                         ><button
                             class="delete-btn"
                             type="button"
-                            @click="expensesStore.removeExpense(expense.id)"
+                            @click="deleteUserExpense(expense.expenseId)"
                         >
                             <svg
                                 style="height: 20px"
@@ -149,14 +178,7 @@
             </tr>
         </tbody>
     </table>
-    <button
-        v-if="expensesStore.expenses.length > 0"
-        class="add-btn hide-btn"
-        type="button"
-        @click="showModal"
-    >
-        Add expense
-    </button>
+    <button v-if="expenses.length > 0" class="add-btn hide-btn" type="button" @click="showCreateModal">Add expense</button>
 </template>
 
 <style scoped>
