@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import { ref } from 'vue'
+    import { ref, computed } from 'vue'
     import { getUserExpenses, deleteUserExpense, type Expense } from '@/firebase/database';
     
     const expenses = await getUserExpenses();
@@ -40,16 +40,29 @@
     });
     */
 
+    import ExpensesSummary from './ExpensesSummaryComponent.vue';
     import CreateExpense from './CreateExpense.vue';
     import ModalComponent from '../components/ModalComponent.vue'
     const createExpense = ref<InstanceType<typeof ModalComponent>>()
     const showCreateModal = () => createExpense.value?.show()
+
+    import SearchExpense from '../components/SearchExpense.vue'
+
+    const search = ref<string>("")
+    const handleSearch = (query: string) => (search.value = query)
+
+    const filteredItems = computed(() => {
+    const query = search.value.toLowerCase()
+    return expenses.filter((item) => item.expenseName.toLowerCase().includes(query))
+})
 </script>
 
 <template>
     <ModalComponent ref="createExpense" showCancel>
         <CreateExpense/>
     </ModalComponent>
+    <SearchExpense @search="handleSearch"/>
+    
     <div v-if="expenses.length > 0" class="main-container">
         <div class="titles-container">
             <div class="titles">
@@ -63,7 +76,7 @@
 
         <div
             class="expenseTable-items"
-            v-for="(expense, index) in expenses"
+            v-for="(expense, index) in filteredItems"
             :key="index"
             :id="expense.expenseId"
         >
@@ -130,7 +143,6 @@
         </div>
     </div>
 
-
     <!--MOBIL-->
     <table v-if="expenses.length > 0">
         <thead>
@@ -142,7 +154,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="expense in expenses">
+            <tr v-for="expense in filteredItems">
                 <td class="name-td">{{ expense.expenseName }}</td>
                 <td class="sum-td">{{ expense.expenseAmount }}kr</td>
                 <td>{{ expense.expenseCategory }}</td>
@@ -179,6 +191,7 @@
         </tbody>
     </table>
     <button v-if="expenses.length > 0" class="add-btn hide-btn" type="button" @click="showCreateModal">Add expense</button>
+    <ExpensesSummary />
 </template>
 
 <style scoped>
@@ -326,7 +339,7 @@
             text-align: left;
             width: 100%;
             margin: 0 auto;
-            margin-top: 2rem;
+            margin-top: 1rem;
             font-weight: 500;
             display: table;
         }
@@ -409,7 +422,7 @@
         }
 
         tbody > tr:nth-of-type(even) {
-            background-color: #d5d4d4;
+            background-color: #eaeaea;
         }
 
         .mobile-btn-container {
