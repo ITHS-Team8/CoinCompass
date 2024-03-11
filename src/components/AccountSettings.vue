@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 
 const userPassword = ref('');
+const userPasswordConfirm = ref('');
 const userCurrency = ref('SEK');
 
 const changePassword = () => {
@@ -21,6 +22,11 @@ const changeCurrency = () => {
 				type="password"
 				v-model="userPassword"
 				placeholder="New password"
+			/>
+			<input
+				type="password"
+				v-model="userPasswordConfirm"
+				placeholder="Confirm password"
 			/>
 			<button @click="changePassword">Save new password</button>
 		</div>
