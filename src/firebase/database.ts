@@ -165,8 +165,6 @@ export async function deleteUserExpense(expenseId: string) {
     const userDoc = doc(db, "users", userId)
 
     await deleteDoc(doc(userDoc, "expenses", expenseId));
-    console.log('User expense deleted');
-
 }
 
 /**
