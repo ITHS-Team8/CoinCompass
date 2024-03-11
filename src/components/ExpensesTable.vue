@@ -32,16 +32,10 @@
     const dbCollection = collection(db, `users/${userId}/expenses`);
     const dbQuery = query(dbCollection);
     onSnapshot(dbQuery, (querySnapshot) => {
-        console.log('checking for new expenses...');
-        console.log(expenses.length);
         querySnapshot.forEach((doc) => {
             const existingExpense = expenses.find(expense => expense.expenseId === doc.id);
             if (!existingExpense) {
                 expenses.push(doc.data() as Expense);
-                console.log('new expense added!')
-            }
-            else {
-                console.log('no new expenses')
             }
         });
     });
