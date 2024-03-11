@@ -3,7 +3,6 @@ import { ref } from 'vue';
 import { computed } from 'vue';
 import router from '@/router';
 import NavBar from '../components/NavBar.vue';
-import ExpensesSummary from '../components/ExpensesSummaryComponent.vue';
 import ExpensesTable from '../components/ExpensesTable.vue';
 import FooterComponent from '../components/FooterComponent.vue';
 import OverviewCard from '../components/OverviewCard.vue';
@@ -66,7 +65,7 @@ const totalAmount = computed(() => {
 				</button>
 			</div>
 		</div>
-		<ExpensesSummary />
+
 		<ExpensesTable />
 	</main>
 	<FooterComponent />
