@@ -3,24 +3,21 @@ import { ref } from "vue";
 const dialog = ref<HTMLDialogElement>();
 const visible = ref(false);
 
-const showModal = () => {
+const expenseId = ref('');
+const showModal = (id: string) => {
   dialog.value?.showModal();
   visible.value = true;
+  expenseId.value = id;
 };
 
-const expenseObject = ref({
-  expenseName: "Groceries",
-  expenseAmount: 100,
-  expenseDescription: "Bought groceries for the week",
-  expenseCategory: "food",
-  expenseDate: "2021-09-01",
-});
-
 defineExpose({
-  show: showModal,
+  show_modal: showModal,
   close: (returnVal?: string): void => dialog.value?.close(returnVal),
   visible,
 });
+
+
+
 </script>
 
 <template>

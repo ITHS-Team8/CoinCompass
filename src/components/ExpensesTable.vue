@@ -40,12 +40,18 @@
         });
     });
     
-
     import ExpensesSummary from './ExpensesSummaryComponent.vue';
     import CreateExpense from './CreateExpense.vue';
     import ModalComponent from '../components/ModalComponent.vue'
     const createExpense = ref<InstanceType<typeof ModalComponent>>()
-    const showCreateModal = () => createExpense.value?.show()
+    const showCreateModal = () => createExpense.value?.show_modal()
+    
+
+    import EditExpenseModal from './unused/EditExpenseModal.vue';
+    const editExpenseModal = ref<InstanceType<typeof EditExpenseModal>>()
+    const showEditModal = (Id: string) => editExpenseModal.value?.show_modal(Id)
+
+
 
     import SearchExpense from '../components/SearchExpense.vue'
 
@@ -59,9 +65,10 @@
 </script>
 
 <template>
-    <ModalComponent ref="createExpense" showCancel>
+    <ModalComponent ref="createExpense">
         <CreateExpense/>
     </ModalComponent>
+    <EditExpenseModal ref="editExpenseModal"/>
     <SearchExpense @search="handleSearch"/>
     
     <div v-if="expenses.length > 0" class="main-container">
@@ -111,7 +118,7 @@
                 </div>
             </div>
             <div class="btn-container">
-                <button class="edit-btn" type="button" @click="">
+                <button class="edit-btn" type="button" @click="showEditModal(expense.expenseId)">
                     <svg
                         style="height: 24px"
                         xmlns="http://www.w3.org/2000/svg"
@@ -161,7 +168,7 @@
                 <td>{{ expense.expenseCategory }}</td>
                 <td>
                     <div class="mobile-btn-container">
-                        <button class="edit-btn" type="button" @click="">
+                        <button class="edit-btn" type="button" @click="showEditModal">
                             <svg
                                 style="height: 20px"
                                 xmlns="http://www.w3.org/2000/svg"

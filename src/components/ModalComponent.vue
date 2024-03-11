@@ -9,7 +9,7 @@
     };
 
     defineExpose({
-      show: showModal,
+      show_modal: showModal,
       close: (returnVal?: string): void => dialog.value?.close(returnVal),
       visible,
     })
