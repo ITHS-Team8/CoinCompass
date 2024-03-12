@@ -192,6 +192,20 @@ export async function getUserExpenses() {
 }
 
 /**
+ * Retrieves a user's expense from the database.
+ * @param expenseId - The ID of the expense to retrieve.
+ * @returns A Promise that resolves to the retrieved Expense object.
+ */
+export async function getUserExpense(expenseId: string): Promise<Expense> {
+	const auth = getAuth();
+	const userId = auth.currentUser?.uid as string;
+	const userDocRef = doc(db, `users/${userId}/expenses/${expenseId}`);
+	const userDoc = await getDoc(userDocRef);
+	const userData = userDoc.data() as DocumentData;
+	return userData as Expense;
+}
+
+/**
  * Retrieves the user's details from the Firestore database.
  * @returns A Promise that resolves to the user's data.
  */
