@@ -50,8 +50,11 @@ import ModalComponent from '../components/ModalComponent.vue';
 const createExpense = ref<InstanceType<typeof ModalComponent>>();
 const showCreateModal = () => createExpense.value?.show();
 
-import SearchExpense from '../components/SearchExpense.vue';
+import EditExpenseModal from './EditExpenseModal.vue';
+const editExpenseModal = ref<InstanceType<typeof EditExpenseModal>>();
+const showEditModal = (id: string) => editExpenseModal.value?.show_modal(id);
 
+import SearchExpense from '../components/SearchExpense.vue';
 const search = ref<string>('');
 const handleSearch = (query: string) => (search.value = query);
 
@@ -116,7 +119,7 @@ const filteredItems = computed(() => {
 				</div>
 			</div>
 			<div class="btn-container">
-				<button class="edit-btn" type="button" @click="">
+				<button class="edit-btn" type="button" @click="showEditModal(expense.expenseId)">
 					<svg
 						style="height: 24px"
 						xmlns="http://www.w3.org/2000/svg"
