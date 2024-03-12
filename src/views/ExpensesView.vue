@@ -6,7 +6,7 @@ import NavBar from '../components/NavBar.vue';
 import ExpensesTable from '../components/ExpensesTable.vue';
 import FooterComponent from '../components/FooterComponent.vue';
 import OverviewCard from '../components/OverviewCard.vue';
-
+import ExportExpense from '@/components/ExportExpense.vue';
 import CreateExpense from '@/components/CreateExpense.vue';
 import ModalComponent from '@/components/ModalComponent.vue';
 const modal = ref<InstanceType<typeof ModalComponent>>();
@@ -67,6 +67,7 @@ const totalAmount = computed(() => {
 		</div>
 
 		<ExpensesTable />
+		<ExportExpense />
 	</main>
 	<FooterComponent />
 </template>
