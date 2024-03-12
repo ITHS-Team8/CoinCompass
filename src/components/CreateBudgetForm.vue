@@ -16,9 +16,11 @@
   </form>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
+import { addUserBudget } from './database';
 
+const userId = 'user123';
 const budgetName = ref('');
 const categories = ref([
   { name: 'Food', amount: 0 },
@@ -27,6 +29,7 @@ const categories = ref([
 
 const submitBudget = () => {
   console.log('Budget Created:', budgetName.value, categories.value);
+  addUserBudget(userId, budgetName.value, categories.value);
 };
 </script>
 
