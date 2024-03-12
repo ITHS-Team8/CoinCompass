@@ -168,7 +168,7 @@
                 <td>{{ expense.expenseCategory }}</td>
                 <td>
                     <div class="mobile-btn-container">
-                        <button class="edit-btn" type="button" @click="showEditModal">
+                        <button class="edit-btn" type="button" @click="showEditModal(expense.expenseId)">
                             <svg
                                 style="height: 20px"
                                 xmlns="http://www.w3.org/2000/svg"
