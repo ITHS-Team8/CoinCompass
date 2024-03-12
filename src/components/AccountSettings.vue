@@ -9,7 +9,11 @@ const userNewPassword = ref('');
 const userNewPasswordConfirm = ref('');
 const userCurrency = ref('SEK');
 
-function updateUserPassword(oldPassword: string, newPassword: string, newPasswordConfirm: string) {
+function updateUserPassword(
+	oldPassword: string,
+	newPassword: string,
+	newPasswordConfirm: string
+) {
 	if (oldPassword === '' || newPassword === '' || newPasswordConfirm === '') {
 		alert('Please fill in all fields');
 		return;
@@ -55,7 +59,17 @@ const changeCurrency = () => {
 				v-model="userNewPasswordConfirm"
 				placeholder="Confirm new password"
 			/>
-			<button @click="updateUserPassword(userOldPassword, userNewPassword, userNewPasswordConfirm)">Change Password</button>
+			<button
+				@click="
+					updateUserPassword(
+						userOldPassword,
+						userNewPassword,
+						userNewPasswordConfirm
+					)
+				"
+			>
+				Change Password
+			</button>
 		</div>
 
 		<div class="settings-section">
