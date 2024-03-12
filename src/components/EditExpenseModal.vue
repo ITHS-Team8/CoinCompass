@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 import { getAuth } from "firebase/auth";
-import {  doc, getDoc } from "firebase/firestore";
-import type { Expense } from "@/firebase/database";
-import db from '@/main';
+import { type Expense } from "@/firebase/database";
+import { doc, getDoc, type DocumentData } from "firebase/firestore";
+import db from "@/main";
+
+
 
 const user = getAuth().currentUser;
 const dialog = ref<HTMLDialogElement>();
@@ -22,34 +24,44 @@ defineExpose({
   visible,
 });
 
+let expense: Expense;
+const expenseName = ref('');
+const expenseAmount = ref(0);
+const expenseDescription = ref('');
+const expenseCategory = ref('');
+const expenseDate = ref(new Date());
+const expenseModifiedAt = ref(new Date());
 
 
-async function getUserExpense() {
-    const docRef = doc(db, `users/${user?.uid}/expenses`, expenseId.value);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      return docSnap.data() as Expense;
-    }
-    else {
-      return false;
-    }
+async function getUserExpense(expenseId: string): Promise<Expense> {
+	const auth = getAuth();
+	const userId = auth.currentUser?.uid as string;
+	const userDocRef = doc(db, `users/${userId}/expenses/${expenseId}`);
+	const userDoc = await getDoc(userDocRef);
+	const userData = userDoc.data() as DocumentData;
+	return userData as Expense;
 }
+
+setTimeout(async () => {
+  expense = await getUserExpense(expenseId.value);
+  console.log(expense);
+}, 2000);
 </script>
 
 <template>
   <dialog ref="dialog" @close="visible = false">
     <div class="form-header">
-      <h1>{{ expenseId }}</h1>
+      <h1>Edit Expense</h1>
     </div>
     <form v-if="visible" method="dialog" class="form-container">
       <div>
         <label for="expenseName">Expense</label>
-        <input type="text" id="expenseName" name="expenseName" required />
+        <input type="text" id="expenseName" name="expenseName" v-model="expenseName" required />
       </div>
 
       <div>
         <label for="expenseAmount">Amount</label>
-        <input type="number" id="expenseAmount" name="expenseAmount" required />
+        <input type="number" id="expenseAmount" name="expenseAmount" v-model="expenseAmount" required />
       </div>
 
       <div>
@@ -58,6 +70,7 @@ async function getUserExpense() {
           id="expenseDescription"
           name="expenseDescription"
           required
+          v-model="expenseDescription"
         ></textarea>
       </div>
 
@@ -75,7 +88,7 @@ async function getUserExpense() {
 
       <div>
         <label for="expenseDate">Date</label>
-        <input type="date" id="expenseDate" name="expenseDate" required />
+        <input type="date" id="expenseDate" name="expenseDate" v-model="expenseDate" required />
       </div>
 
       <button class="form-button">Edit Expense</button>
