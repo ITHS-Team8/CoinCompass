@@ -47,7 +47,7 @@
     const showCreateModal = () => createExpense.value?.show_modal()
     
 
-    import EditExpenseModal from './unused/EditExpenseModal.vue';
+    import EditExpenseModal from './EditExpenseModal.vue';
     const editExpenseModal = ref<InstanceType<typeof EditExpenseModal>>()
     const showEditModal = (Id: string) => editExpenseModal.value?.show_modal(Id)
 
@@ -461,3 +461,4 @@
         }
     }
 </style>
+./EditExpenseModal.vue
