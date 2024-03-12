@@ -1,6 +1,10 @@
 <script setup lang="ts">
     import { ref, computed } from 'vue'
     import { getUserExpenses, deleteUserExpense, type Expense } from '@/firebase/database';
+    import ExpensesSummary from './ExpensesSummaryComponent.vue';
+    import { getAuth } from 'firebase/auth';
+    import { onSnapshot, collection, query } from 'firebase/firestore';
+    import db from '@/main'
     
     const expenses: Expense[] = await getUserExpenses();
 
@@ -24,12 +28,9 @@
 
     
     
-    import { getAuth } from 'firebase/auth';
-    import { onSnapshot, collection, query } from 'firebase/firestore';
-    import db from '@/main'
     const auth = getAuth();
     const userId = auth.currentUser?.uid as string;
-    const dbCollection = collection(db, `users/${userId}/expenses`);
+    const dbCollection = collection(db, `users/${userId}/expenses`); 
     const dbQuery = query(dbCollection);
     onSnapshot(dbQuery, (querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -40,7 +41,6 @@
         });
     });
     
-    import ExpensesSummary from './ExpensesSummaryComponent.vue';
     import CreateExpense from './CreateExpense.vue';
     import ModalComponent from '../components/ModalComponent.vue'
     const createExpense = ref<InstanceType<typeof ModalComponent>>()
@@ -53,8 +53,8 @@
 
 
 
+    
     import SearchExpense from '../components/SearchExpense.vue'
-
     const search = ref<string>("")
     const handleSearch = (query: string) => (search.value = query)
 
