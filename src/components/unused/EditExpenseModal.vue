@@ -1,9 +1,15 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+import { getAuth } from "firebase/auth";
+import {  doc, getDoc } from "firebase/firestore";
+import type { Expense } from "@/firebase/database";
+import db from '@/main';
+
+const user = getAuth().currentUser;
 const dialog = ref<HTMLDialogElement>();
 const visible = ref(false);
-
 const expenseId = ref('');
+
 const showModal = (id: string) => {
   dialog.value?.showModal();
   visible.value = true;
@@ -18,12 +24,22 @@ defineExpose({
 
 
 
+async function getUserExpense() {
+    const docRef = doc(db, `users/${user?.uid}/expenses`, expenseId.value);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      return docSnap.data() as Expense;
+    }
+    else {
+      return false;
+    }
+}
 </script>
 
 <template>
   <dialog ref="dialog" @close="visible = false">
     <div class="form-header">
-      <h1>Edit Expense</h1>
+      <h1>{{ expenseId }}</h1>
     </div>
     <form v-if="visible" method="dialog" class="form-container">
       <div>
