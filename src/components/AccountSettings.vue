@@ -89,12 +89,13 @@ const changeCurrency = () => {
 	flex-direction: column;
 	width: 100%;
 	max-width: 600px;
-	margin: 1rem auto;
+	margin: 0 auto;
+	margin-top: 0.6rem;
 }
 
 .settings-section {
 	background-color: #d5d4d4;
-	padding: 20px;
+	padding: 1rem;
 	margin-bottom: 20px;
 	border-radius: 8px;
 }
