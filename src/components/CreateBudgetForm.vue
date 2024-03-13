@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { addUserBudget } from './database';
+import { addUserBudget } from '@/firebase/data';
 
 const userId = 'user123';
 const budgetName = ref('');

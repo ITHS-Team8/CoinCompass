@@ -24,34 +24,40 @@ export type Expense = {
 	modifiedAt: Date;
 };
 
+
 /**
  * Adds a budget to the user's budgets in the database.
  *
+ * @param userId - The ID of the user.
  * @param budgetName - The name of the budget.
  * @param categories - The categories and their respective amounts within the budget.
  * @returns A promise that resolves when the budget is successfully added to the user's budgets.
  */
 export async function addUserBudget(
-	userId: string,
-	budgetName: string,
-	categories: Array<{ name: string; amount: number }>
+    userId: string,
+    budgetName: string,
+    categories: Array<{ name: string; amount: number }>
 ) {
-	try {
-			const budgetId = crypto.randomUUID();
-			const userDoc = doc(db, 'users', userId);
+    try {
+        const budgetId = crypto.randomUUID();
 
-			await setDoc(doc(userDoc, 'budgets', budgetId), {
-					budgetId: budgetId,
-					budgetName: budgetName,
-					categories: categories,
-					createdAt: Date.now(),
-					modifiedAt: Date.now(),
-			});
+        
+        const userDoc = doc(db, 'users', userId);
 
-			console.log('User budget added');
-	} catch (e) {
-			console.error('Error adding budget: ', e);
-	}
+        
+        await setDoc(doc(userDoc, 'budgets', budgetId), {
+            budgetId: budgetId,
+            budgetName: budgetName,
+            categories: categories,
+            createdAt: new Date(),
+            modifiedAt: new Date(),
+        });
+
+        console.log('User budget added');
+    } catch (error) {
+        console.error('Error adding budget: ', error);
+        throw error;
+    }
 }
 
 

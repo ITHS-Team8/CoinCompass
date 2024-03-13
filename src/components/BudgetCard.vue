@@ -1,11 +1,12 @@
 <template>
   <div class="budget-card">
-    <h3>{{ budgetName }}</h3>
-    <ul>
-      <li v-for="(amount, category) in categories" :key="category">
-        {{ category }}: {{ formatCurrency(amount) }}
-      </li>
-    </ul>
+    <div class="title">
+      <h3>{{ budgetName }}</h3>
+    </div>
+    <div class="content-container">
+      <p>Kategorier: {{ categories }}</p>
+      <p>Belopp: {{ amount }}</p>
+    </div>
   </div>
 </template>
 
@@ -14,27 +15,63 @@ import { defineProps } from 'vue';
 
 
 const props = defineProps({
-  budgetName: String,
-  categories: Object,
+  budgetName: {
+    type: String,
+    required: true,
+  },
+  categories: {
+    type: String,
+    default: '',
+  },
+  amount: {
+    type: Number,
+    required: true,
+  },
 });
-
-
-function formatCurrency(amount) {
-  return new Intl.NumberFormat('sv-SE', { style: 'currency', currency: 'SEK' }).format(amount);
-}
 </script>
 
 <style scoped>
 .budget-card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 1rem;
-  margin: 1rem 0;
-  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  background-color: #eaeaea;
+  min-width: 200px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-h3 {
-  margin-top: 0;
+.budget-card .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #d5d4d4;
+  border-radius: 12px 12px 0 0;
+}
+
+.budget-card h3 {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin: 0.5rem;
+}
+
+.budget-card .content-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.budget-card .content-container p {
+  font-size: 1.6rem;
+}
+
+@media (max-width: 800px) {
+  .budget-card .content-container {
+    height: 40px;
+  }
 }
 </style>
-

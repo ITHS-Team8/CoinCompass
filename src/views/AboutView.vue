@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import NavBar from '../components/NavBar.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
-import BudgetCard from '../BudgetCard.vue'; 
 </script>
 
 <template>
