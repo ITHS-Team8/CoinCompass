@@ -16,7 +16,7 @@ const userPassword = ref('');
 
 const login = async () => {
 	try {
-		signInWithEmailAndPassword(
+		await signInWithEmailAndPassword(
 			auth,
 			userEmail.value,
 			userPassword.value
