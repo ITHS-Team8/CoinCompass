@@ -9,6 +9,7 @@ import OverviewCard from '../components/OverviewCard.vue';
 import ExportExpense from '@/components/ExportExpense.vue';
 import CreateExpense from '@/components/CreateExpense.vue';
 import ModalComponent from '@/components/ModalComponent.vue';
+import ChartCard from '../components/ChartCard.vue'
 const modal = ref<InstanceType<typeof ModalComponent>>();
 const showModal = () => modal.value?.show();
 
@@ -68,6 +69,8 @@ const totalAmount = computed(() => {
 
 		<ExpensesTable />
 		<ExportExpense />
+		<h4 class="table-heading" v-if="expenses.length > 0">Chart</h4>
+		<ChartCard v-if="expenses.length > 0"/>
 	</main>
 	<FooterComponent />
 </template>
