@@ -218,7 +218,7 @@ const userGender = ref('');
 }
 
 h2 {
-	font-size: 2rem;
+	font-size: 1.6rem;
 	font-weight: 600;
 	text-align: center;
 }
@@ -226,7 +226,7 @@ h2 {
 form .field-container {
 	width: 100%;
 	height: 34px;
-	margin-top: 1.4rem;
+	margin-top: 1rem;
 	position: relative;
 }
 

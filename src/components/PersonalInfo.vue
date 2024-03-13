@@ -6,7 +6,7 @@ const userDetails = await getUserDetails();
 <template>
 	<div class="container">
 		<div class="title-container">
-			<h1>Personal Information</h1>
+			<h2>Personal Information</h2>
 		</div>
 		<div class="top-container">
 			<h3>Username:</h3>
@@ -31,8 +31,15 @@ const userDetails = await getUserDetails();
 	flex-direction: column;
 	align-items: flex-start;
 	height: 100%;
+	min-height: 520px;
+	min-width: 260px;
 	border-radius: 12px;
 	background-color: #eaeaea;
+}
+
+h2 {
+	padding: 8px;
+	font-size: 1.5rem;
 }
 .top-container {
 	display: flex;
@@ -60,5 +67,11 @@ const userDetails = await getUserDetails();
 .title-container h1 {
 	padding: 1rem;
 	font-size: 2rem;
+}
+
+@media (max-width: 868px) {
+	.container {
+		min-height: 0;
+	}
 }
 </style>

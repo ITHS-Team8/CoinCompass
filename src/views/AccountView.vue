@@ -33,11 +33,11 @@ main {
 	display: flex;
 	flex-direction: row;
 	margin: 1rem 10vw;
-	gap: 2rem;
+	gap: 1.6rem;
 }
 .settings-container {
 	background-color: #eaeaea;
-	padding: 28px;
+	padding: 1.4rem;
 	width: 100%;
 	border-radius: 12px;
 }
