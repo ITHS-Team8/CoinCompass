@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { computed } from 'vue';
-import router from '@/router';
+import { getUserExpenses, type Expense } from '@/firebase/database';
+import { getAuth } from 'firebase/auth';
+import { onSnapshot, collection, query } from 'firebase/firestore';
+import db from '@/main';
 import NavBar from '../components/NavBar.vue';
 import ExpensesTable from '../components/ExpensesTable.vue';
 import FooterComponent from '../components/FooterComponent.vue';
@@ -13,8 +16,23 @@ import ChartCard from '../components/ChartCard.vue'
 const modal = ref<InstanceType<typeof ModalComponent>>();
 const showModal = () => modal.value?.show();
 
-import { getUserExpenses } from '@/firebase/database';
 const expenses = await getUserExpenses();
+
+
+const auth = getAuth();
+const userId = auth.currentUser?.uid as string;
+const dbCollection = collection(db, `users/${userId}/expenses`);
+const dbQuery = query(dbCollection);
+onSnapshot(dbQuery, (querySnapshot) => {
+	querySnapshot.forEach((doc) => {
+		const existingExpense = expenses.find(
+			(expense) => expense.expenseId === doc.id
+		);
+		if (!existingExpense) {
+			expenses.push(doc.data() as Expense);
+		}
+	});
+});
 
 const latestExpense = computed(() => {
 	return expenses[expenses.length - 1];
