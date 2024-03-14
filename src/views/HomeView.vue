@@ -1,9 +1,15 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import NavBar from '../components/NavBar.vue';
+import HeroSection from '../components/HeroSection.vue';
+import FooterComponent from '@/components/FooterComponent.vue';
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+	<main>
+		<NavBar />
+		<HeroSection />
+		<FooterComponent />
+	</main>
 </template>
+
+<style scoped></style>
