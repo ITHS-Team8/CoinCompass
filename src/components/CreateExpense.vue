@@ -13,6 +13,9 @@ const expenseCategories = ref([
 const expenseName = ref('');
 const expenseDescription = ref('');
 const expenseAmount = ref(1);
+const expenseName = ref('');
+const expenseDescription = ref('');
+const expenseAmount = ref(0);
 const expenseCategory = ref(expenseCategories.value[0]);
 const expenseDate = ref(new Date());
 </script>
@@ -136,6 +139,8 @@ select:focus {
 	height: 4rem;
 	resize: none;
 	padding: 0.5rem 0.25rem;
+	font-family: Montserrat, sans-serif;
+	font-size: 0.75rem;
 }
 
 .form-container > div > input[type='date'] {
@@ -146,12 +151,21 @@ select:focus {
 	padding: 1rem;
 	border: none;
 	border-radius: 12px;
+=======
+	font-family: Montserrat, sans-serif;
+}
+
+.form-button {
+	padding: 0.5rem;
+	border: none;
+	border-radius: 6px;
 	background-color: var(--primary-color);
 	color: white;
 	font-weight: bold;
 	cursor: pointer;
 	font-size: 1rem;
 }
+
 .form-button:hover {
 	transition: all 0.3s ease-in-out;
 	background-color: var(--secondary-color);

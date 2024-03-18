@@ -82,7 +82,6 @@ const changeCurrency = () => {
 	</div>
 </div>
 -->
-</div>
 </template>
 
 <style scoped>

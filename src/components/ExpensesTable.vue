@@ -71,7 +71,6 @@ const filteredItems = computed(() => {
 		<CreateExpense />
 	</ModalComponent>
 	<SearchExpense @search="handleSearch" v-if="expenses.length > 0" />
-
 	<div v-if="expenses.length > 0" class="main-container">
 		<div class="titles-container">
 			<div class="titles">
