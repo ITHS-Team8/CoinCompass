@@ -13,9 +13,6 @@ const expenseCategories = ref([
 const expenseName = ref('');
 const expenseDescription = ref('');
 const expenseAmount = ref(1);
-const expenseName = ref('');
-const expenseDescription = ref('');
-const expenseAmount = ref(0);
 const expenseCategory = ref(expenseCategories.value[0]);
 const expenseDate = ref(new Date());
 </script>
