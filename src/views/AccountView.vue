@@ -32,8 +32,8 @@ main {
 .top-container {
 	display: flex;
 	flex-direction: row;
-	margin: 1rem 10vw;
-	gap: 1.6rem;
+	margin: 1rem 30vw;
+	gap: 2rem;
 }
 .settings-container {
 	background-color: #eaeaea;

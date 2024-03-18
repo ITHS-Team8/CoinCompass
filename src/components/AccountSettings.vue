@@ -71,16 +71,18 @@ const changeCurrency = () => {
 				Change Password
 			</button>
 		</div>
-
-		<div class="settings-section">
-			<h2>Currency</h2>
-			<select v-model="userCurrency">
-				<option value="SEK">SEK</option>
-				<option value="EUR">EUR</option>
-			</select>
-			<button @click="changeCurrency">Save new currency</button>
-		</div>
+<!--
+	<div class="settings-section">
+		<h2>Currency</h2>
+		<select v-model="userCurrency">
+			<option value="SEK">SEK</option>
+			<option value="EUR">EUR</option>
+		</select>
+		<button @click="changeCurrency">Save new currency</button>
 	</div>
+</div>
+-->
+</div>
 </template>
 
 <style scoped>

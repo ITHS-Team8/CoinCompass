@@ -60,13 +60,14 @@ h2 {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	text-align: center;
 	width: 100%;
 	background-color: #d5d4d4;
 	border-radius: 12px 12px 0 0;
 }
 .title-container h1 {
-	padding: 1rem;
-	font-size: 2rem;
+	padding: .75rem;
+	font-size: 1.25rem;
 }
 
 @media (max-width: 868px) {

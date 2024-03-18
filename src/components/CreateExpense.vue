@@ -2,15 +2,6 @@
 import { addUserExpense } from '@/firebase/database';
 import { ref } from 'vue';
 
-function getCurrentDate() {
-	const currentDate = new Date();
-	const year = currentDate.getFullYear();
-	const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-	const day = String(currentDate.getDate()).padStart(2, '0');
-	const formattedDate = `${year}-${month}-${day}`;
-	return formattedDate;
-}
-
 const expenseCategories = ref([
 	'Food',
 	'Transport',
@@ -18,9 +9,10 @@ const expenseCategories = ref([
 	'Entertainment',
 	'Other',
 ]);
+
 const expenseName = ref('');
 const expenseDescription = ref('');
-const expenseAmount = ref(0);
+const expenseAmount = ref(1);
 const expenseCategory = ref(expenseCategories.value[0]);
 const expenseDate = ref(new Date());
 </script>
@@ -49,11 +41,12 @@ const expenseDate = ref(new Date());
 				name="expenseAmount"
 				placeholder="Expense Amount"
 				v-model="expenseAmount"
+				step="10"
 				required
 			/>
 		</div>
 		<div>
-			<label for="expenseDescription">Description</label>
+			<label for="expenseDescription">Description (optional)</label>
 			<textarea
 				id="expenseDescription"
 				name="expenseDescription"
@@ -103,6 +96,7 @@ const expenseDate = ref(new Date());
 	background-color: var(--primary-color);
 	color: #fff;
 	padding: 1rem;
+	text-align: center;
 }
 
 .form-container {
@@ -116,6 +110,14 @@ const expenseDate = ref(new Date());
 	flex-direction: column;
 	gap: 0.25rem;
 }
+
+.form-container input,
+textarea,
+select {
+	font-family: Montserrat, sans-serif;
+	font-size: 1rem;
+}
+
 .form-container > div > input,
 textarea,
 select {
@@ -134,25 +136,24 @@ select:focus {
 	height: 4rem;
 	resize: none;
 	padding: 0.5rem 0.25rem;
-	font-family: Montserrat, sans-serif;
-	font-size: 0.75rem;
 }
 
 .form-container > div > input[type='date'] {
 	padding: 0.5rem 0.25rem;
-	font-family: Montserrat, sans-serif;
 }
 
 .form-button {
-	padding: 0.5rem;
+	padding: 1rem;
 	border: none;
-	border-radius: 6px;
+	border-radius: 12px;
 	background-color: var(--primary-color);
 	color: white;
 	font-weight: bold;
 	cursor: pointer;
+	font-size: 1rem;
 }
 .form-button:hover {
+	transition: all 0.3s ease-in-out;
 	background-color: var(--secondary-color);
 }
 </style>
