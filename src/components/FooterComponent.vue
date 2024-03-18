@@ -72,8 +72,8 @@ a {
 }
 
 .social_links li img {
-	height: 50px;
-	width: 50px;
+	height: 40px;
+	width: 40px;
 }
 
 .middleLink {
@@ -116,7 +116,7 @@ a {
 
 	.social_links {
 		order: 3;
-		margin-bottom: 20px;
+		margin-bottom: 30px;
 	}
 
 	a {
@@ -125,7 +125,7 @@ a {
 
 	.copyright_text {
 		font-size: 0.975rem;
-		margin-top: 20rem;
+		margin-top: 22rem;
 	}
 }
 </style>

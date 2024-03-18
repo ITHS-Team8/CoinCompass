@@ -32,7 +32,7 @@ main {
 .top-container {
 	display: flex;
 	flex-direction: row;
-	margin: 1rem 30vw;
+	margin: 1rem 20vw;
 	gap: 2rem;
 }
 .settings-container {
@@ -40,6 +40,12 @@ main {
 	padding: 1.4rem;
 	width: 100%;
 	border-radius: 12px;
+}
+
+@media (max-width: 1200px) {
+	.top-container {
+		margin: 1rem 10vw;
+	}
 }
 
 @media (max-width: 868px) {

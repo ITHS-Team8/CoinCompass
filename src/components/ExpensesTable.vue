@@ -70,7 +70,7 @@ const filteredItems = computed(() => {
 	<ModalComponent ref="createExpense" showCancel>
 		<CreateExpense />
 	</ModalComponent>
-	<SearchExpense @search="handleSearch" />
+	<SearchExpense @search="handleSearch" v-if="expenses.length > 0" />
 
 	<div v-if="expenses.length > 0" class="main-container">
 		<div class="titles-container">
@@ -163,7 +163,9 @@ const filteredItems = computed(() => {
 						<button
 							class="delete-btn"
 							type="button"
-							@click="deleteUserExpenseAndElement(expense.expenseId)"
+							@click="
+								deleteUserExpenseAndElement(expense.expenseId)
+							"
 						>
 							<svg
 								style="height: 20px"
