@@ -25,16 +25,10 @@ defineExpose({
 
 <style scoped>
 dialog {
-	/* border: none;
-	border-radius: 6px;
-	position: fixed;
-	left: 40%;
-	top: 20%; */
-
 	margin: auto;
 	border: none;
 	border-radius: 12px;
-	width: 350px;
+	width: 500px;
 }
 
 @media (max-width: 600px) {
