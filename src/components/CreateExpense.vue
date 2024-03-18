@@ -148,7 +148,6 @@ select:focus {
 	padding: 1rem;
 	border: none;
 	border-radius: 12px;
-=======
 	font-family: Montserrat, sans-serif;
 }
 
